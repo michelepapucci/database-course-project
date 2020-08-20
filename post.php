@@ -14,7 +14,7 @@
                 <span class = "autore_post">Mario Rossi -</span> <span class = "data_post">10 agosto 2020 -</span>
                 <span class = "visualizzazioni">20 visualizzazioni -</span>
                 <a href="#commenti">Commenti</a> <br/>
-                <img class = "immagine" src="1.jpg" alt="gattino">
+                <img class = "immagine" src="img/1.jpg" alt="gattino">
                 <p>Tua mamma è una grandissima donna. "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
