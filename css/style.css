@@ -1,0 +1,30 @@
+.titolo {
+    text-align: center;
+    padding-right: 25%;
+}
+
+.contenitore {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.sinistra {
+    width: 75%;
+    text-align: center;
+    padding-right: 2%;
+}
+
+.destra {
+    width: 25%;
+
+}
+
+.contenitore p {
+    word-wrap: wrap;
+    word-break: break-all;
+}
+
+.immagine {
+    max-width: 100%;
+}
