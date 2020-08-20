@@ -4,50 +4,48 @@
     <meta charset="UTF-8">
     <title>Post</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <?php
-      require 'db_handler.php';
-    ?>
+	<?php
+		require 'db_handler.php';
+		$post = getPost($_GET["post_id"]);
+		if($post == false) {
+		    exit("ERRORE 404 - Pagina non trovata!");
+        }
+	?>
 </head>
 <body>
-    <h1 class = "titolo">Tua mamma</h1>
-    <div class = "contenitore">
-        <div class = "sinistra">
+    <h1 class="titolo"><?php echo $post["titolo_post"]?></h1>
+    <div class="contenitore">
+        <div class="sinistra">
             <div>
-                <?php
-                    $post = getPost()
-                ?>
-                <span class = "autore_post">Mario Rossi -</span> <span class = "data_post">10 agosto 2020 -</span>
-                <span class = "visualizzazioni">20 visualizzazioni -</span>
+                <span class="autore_post"><?php echo $post["nome_utente"] ?> -</span>
+                <span class="data_post"><?php echo $post["data_ora_post"] ?> -</span>
+                <span class="visualizzazioni">20 visualizzazioni -</span>
                 <a href="#commenti">Commenti</a> <br/>
-                <img class = "immagine" src="img/1.jpg" alt="gattino">
-                <p class = "testo">Tua mamma è una grandissima donna. "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+                <img class="immagine" src="img/1.jpg" alt="gattino">
+                <p class="testo"><?php echo $post["testo_post"] ?></p>
             </div>
             <div>
                 <h3 id="commenti">Commenti</h3>
-                <div>
-                    <p class = "commento">
-                        <span class = "autore_commento">Guido Bianchi:</span><br/>
-                        Hai ragione, mia mamma è una grandissima donna.<br/>
-                        <span class = "data_commento">(12 agosto 2020)</span>
-                    </p>
-                </div>
-                <div>
-                    <p class = "commento">
-                        <span class = "autore_commento">Mr.Simpatia:</span><br/>
-                    Io non sono d'accordo. Mia mamma è alta solo un metro e 50. <br/>
-                        <span class = "data_commento">(13 agosto 2020)</span>
-                    </p>
-                </div>
+				<?php
+					$commenti = getCommenti($_GET["post_id"]);
+					foreach ($commenti as $commento) {
+						echo("
+                            <div>
+                                <p class = \"commento\">
+                                    <span class = \"autore_commento\">" . $commento["nome_utente"] . ":</span><br/>"
+							. $commento["testo_comm"] . "<br/>
+                                    <span class = \"data_commento\">(" . $commento["data_ora_comm"] . ")</span>
+                                </p>
+                            </div>         
+                        ");
+					}
+				?>
             </div>
         </div>
-        <div class = "destra">
-            <div class = "post_recenti">
+        <div class="destra">
+            <div class="post_recenti">
                 <h3>Titolo</h3>
-                <p class = "testo">Testo post</p>
+                <p class="testo">Testo post</p>
             </div>
         </div>
     </div>
