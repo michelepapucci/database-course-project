@@ -17,7 +17,8 @@
 
 .destra {
     width: 25%;
-
+    text-align: center;
+    flex-direction: column;
 }
 
 .contenitore p {

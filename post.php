@@ -15,7 +15,7 @@
                 <span class = "visualizzazioni">20 visualizzazioni -</span>
                 <a href="#commenti">Commenti</a> <br/>
                 <img class = "immagine" src="img/1.jpg" alt="gattino">
-                <p>Tua mamma è una grandissima donna. "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                <p class = "testo">Tua mamma è una grandissima donna. "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                     Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
@@ -40,7 +40,10 @@
             </div>
         </div>
         <div class = "destra">
-            <p>ROBA A CASOOOOOOOOOOOOO00000000000000000000000000000000</p>
+            <div class = "post_recenti">
+                <h3>Titolo</h3>
+                <p class = "testo">Testo post</p>
+            </div>
         </div>
     </div>
 </body><?php
