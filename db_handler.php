@@ -63,5 +63,3 @@
 		return false; 
 	}
 
-	getPost(2);
-	print_r(getCommenti(2));
