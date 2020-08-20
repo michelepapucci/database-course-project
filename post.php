@@ -4,13 +4,18 @@
     <meta charset="UTF-8">
     <title>Post</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <script src = ""></script>
+    <?php
+      require 'db_handler.php';
+    ?>
 </head>
 <body>
     <h1 class = "titolo">Tua mamma</h1>
     <div class = "contenitore">
         <div class = "sinistra">
             <div>
+                <?php
+                    $post = getPost()
+                ?>
                 <span class = "autore_post">Mario Rossi -</span> <span class = "data_post">10 agosto 2020 -</span>
                 <span class = "visualizzazioni">20 visualizzazioni -</span>
                 <a href="#commenti">Commenti</a> <br/>
