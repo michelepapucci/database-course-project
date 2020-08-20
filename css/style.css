@@ -9,23 +9,28 @@
     width: 100%;
 }
 
+.contenitore p {
+    word-break: break-all;
+}
+
 .sinistra {
     width: 75%;
     text-align: center;
     padding-right: 2%;
 }
 
+.immagine {
+    max-width: 100%;
+}
+
 .destra {
     width: 25%;
     text-align: center;
     flex-direction: column;
+    border-left: 1.8px solid;
 }
 
-.contenitore p {
-    word-wrap: wrap;
-    word-break: break-all;
-}
-
-.immagine {
-    max-width: 100%;
+.post_recenti {
+    margin: 5%;
+    border: 1.5px solid;
 }
