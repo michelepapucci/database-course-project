@@ -25,7 +25,9 @@
                 <p class="testo"><?php echo $post["testo_post"] ?></p>
             </div>
             <div>
-                <h3 id="commenti">Commenti</h3>
+                <div class = "div_titoletto">
+                    <h3 class = "titoletto">Commenti</h3>
+                </div>
 				<?php
 					$commenti = getCommenti($_GET["post_id"]);
 					foreach ($commenti as $commento) {
@@ -43,6 +45,9 @@
             </div>
         </div>
         <div class="destra">
+            <div class = "div_titoletto">
+                <h3 class = "titoletto">Post recenti</h3>
+            </div>
             <div class="post_recenti">
                 <h3>Titolo</h3>
                 <p class="testo">Testo post</p>

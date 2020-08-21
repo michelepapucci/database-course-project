@@ -49,7 +49,18 @@
 }
 
 .post_recenti {
-    margin: 5%;
-    border: 1.5px solid;
+    margin: 10%;
+    border: 0.5px solid white;
     background-color: white;
+}
+
+.div_titoletto {
+    display: flex;
+    justify-content: center;
+}
+
+.titoletto {
+    padding: 1.5%;
+    border-top: 2px solid;
+    border-bottom: 2px solid;
 }
