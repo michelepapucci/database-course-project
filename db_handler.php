@@ -63,3 +63,14 @@
 		return false; 
 	}
 
+	function getBlogLatestPost($post_id)
+	{
+		$conn = db_connect();
+		if($conn != false) {
+			$stmt = $conn -> prepare("SELECT id_blog FROM post WHERE id_post = :id");
+			$stmt -> bindParam(':id', $post_id);
+			$stmt -> execute();
+			$blog_id = $stmt -> fetchColumn(0);
+			echo $blog_id;
+		}
+	}
