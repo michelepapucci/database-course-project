@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
+    <!--
+        TODO: Inserimento commenti sotto al post
+        TODO: Slideshow immagini
+    -->
     <meta charset="UTF-8">
-    <title>Post</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
 	<?php
 		require 'db_handler.php';
@@ -11,6 +14,7 @@
 			exit("ERRORE 404 - Pagina non trovata!");
 		}
 	?>
+    <title><?php echo $post["titolo_post"] ?></title>
 </head>
 <body class="body">
     <div class="contenitore">
