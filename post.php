@@ -18,7 +18,8 @@
 	?>
     <title><?php echo $post["titolo_post"] ?></title>
 </head>
-<body class="body">
+
+<body>
     <div class="contenitore">
         <div class="sinistra">
             <h1 class="titolo"><?php echo $post["titolo_post"] ?></h1>
