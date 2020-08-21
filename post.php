@@ -3,7 +3,6 @@
 <head>
     <!--
         TODO: Inserimento commenti sotto al post
-        TODO: Migliorare slideshow ???
     -->
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -11,10 +10,16 @@
     <script src="js/slideshow.js"></script>
 	<?php
 		require 'db_handler.php';
-		$post = getPost($_GET["post_id"]);
-		if ($post == false) {
-			exit("ERRORE 404 - Pagina non trovata!");
-		}
+		if(isset($_GET["id_post"])){
+			$post = getPost($_GET["id_post"]);
+			if ($post == false) {
+				exit("ERRORE 404 - Pagina non trovata!");
+			}
+        }
+		else {
+		    exit("ERRORE 400 - Nessun post specificato!");
+        }
+
 	?>
     <title><?php echo $post["titolo_post"] ?></title>
 </head>
@@ -27,9 +32,9 @@
                 <span class="autore_post"><?php echo $post["nome_utente"] ?> -</span>
                 <span class="data_post"><?php echo $post["data_ora_post"] ?> -</span>
                 <span class="visualizzazioni">20 visualizzazioni -</span>
-                <a class="link" href="#commenti">Commenti (<?php echo(getNumeroCommenti($_GET["post_id"])); ?>)</a> <br/>
+                <a class="link" href="#commenti">Commenti (<?php echo(getNumeroCommenti($post["id_post"])); ?>)</a> <br/>
 					<?php
-						$immagini = getImmaginiPost($_GET["post_id"]);
+						$immagini = getImmaginiPost($post["id_post"]);
 						if($immagini != false) {
 						    echo("<div class = \"slideshow\">");
 							foreach($immagini as $immagine) {
@@ -52,7 +57,7 @@
                     <h3 class="titoletto">Commenti</h3>
                 </div>
 				<?php
-					$commenti = getCommenti($_GET["post_id"]);
+					$commenti = getCommenti($post["id_post"]);
 					if ($commenti == false) {
 						echo "<div><p>Nessun Commento sotto a questo post</p></div>";
 					} else {
@@ -76,13 +81,13 @@
                 <h3 class="titoletto">Post recenti</h3>
             </div>
 			<?php
-				$posts = getLatestPostSidebar($_GET["post_id"]);
-				foreach ($posts as $post) {
-					if ($post["id_post"] != $_GET["post_id"]) {
+				$posts = getLatestPostSidebar($post["id_post"]);
+				foreach ($posts as $l_post) {
+					if ($post["id_post"] != $l_post["id_post"]) {
 						echo("
                         <div class = 'post_recenti'>
-                            <a class = 'link' href = 'http://localhost/progettoBDD/post.php?post_id=" . $post["id_post"] . "'>" . $post["titolo_post"] . "</a>
-                            <p>" . substr($post["testo_post"], 0, 100) . "...</p>
+                            <a class = 'link' href = 'http://localhost/progettoBDD/post.php?post_id=" . $l_post["id_post"] . "'>" . $l_post["titolo_post"] . "</a>
+                            <p>" . substr($l_post["testo_post"], 0, 100) . "...</p>
                         </div>
                         ");
 					}

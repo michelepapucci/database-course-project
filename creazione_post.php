@@ -9,7 +9,7 @@
     ?>
 </head>
 <body class = "creazione">
-    <form action = "" method = "get">
+    <form action = "insert_post.php" method = "post">
         <label for="titolo_post" class = "consegna">Scrivi qui il tuo titolo</label><br/>
         <input type = "text" id="titolo_post" name="titolo_post" maxlength="100" ><br/>
         <input type = "button" value = "Carica qui le tue foto" class = "bottone" id = "bottone_foto"><br/>
