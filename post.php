@@ -28,18 +28,23 @@
                 <h3 id="commenti">Commenti</h3>
 				<?php
 					$commenti = getCommenti($_GET["post_id"]);
-					foreach ($commenti as $commento) {
-						echo("
+					if($commenti == false) {
+					    echo "<div><p>Nessun Commento sotto a questo post</p></div>";
+                    }
+					else {
+						foreach ($commenti as $commento) {
+							echo("
                             <div>
                                 <p class = \"commento\">
                                     <span class = \"autore_commento\">" . $commento["nome_utente"] . ":</span><br/>"
-							. $commento["testo_comm"] . "<br/>
+								. $commento["testo_comm"] . "<br/>
                                     <span class = \"data_commento\">(" . $commento["data_ora_comm"] . ")</span>
                                 </p>
                             </div>         
                         ");
-					}
-				?>
+						}
+                    }
+				getBlogLatestPost($_GET["post_id"]);?>
             </div>
         </div>
         <div class="destra">
