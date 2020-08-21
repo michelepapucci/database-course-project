@@ -46,6 +46,33 @@
 		return false;
 	}
 
+	function getImmaginiPost($post_id) {
+		$conn = db_connect();
+		if($conn != false) {
+			$stmt = $conn->prepare("SELECT * FROM immagine WHERE id_post = :id");
+			$stmt -> bindParam(':id', $post_id);
+			$stmt -> execute();
+			if($immagini = $stmt -> fetchAll()) {
+				$conn = null;
+				return $immagini;
+			}
+		}
+		$conn = null;
+		return false;
+	}
+
+	function getNumeroCommenti($post_id)
+	{
+		$conn = db_connect();
+		if($conn != false) {
+			$stmt = $conn->prepare("SELECT COUNT(*) FROM commento WHERE id_post = :id");
+			$stmt -> bindParam(':id', $post_id);
+			$stmt -> execute();
+			$conn = null;
+			return $stmt -> fetchColumn(0);
+		}
+	}
+
 	//Cerco e restituisco tutti i commenti ad un certo post
 	function getCommenti($post_id)
 	{
@@ -63,14 +90,22 @@
 		return false; 
 	}
 
-	function getBlogLatestPost($post_id)
+	function getLatestPostSidebar($post_id)
 	{
 		$conn = db_connect();
 		if($conn != false) {
-			$stmt = $conn -> prepare("SELECT id_blog FROM post WHERE id_post = :id");
+			$stmt = $conn -> prepare("
+							SELECT * 
+							FROM post 
+							WHERE id_blog = (SELECT id_blog FROM post WHERE id_post = :id) 
+							ORDER BY data_ora_post LIMIT 5");
 			$stmt -> bindParam(':id', $post_id);
 			$stmt -> execute();
-			$blog_id = $stmt -> fetchColumn(0);
-			echo $blog_id;
+			if($posts = $stmt -> fetchAll()) {
+				$conn = null;
+				return $posts;
+			}
 		}
+		$conn = null;
+		return false;
 	}
