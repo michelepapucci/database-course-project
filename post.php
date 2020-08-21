@@ -3,10 +3,12 @@
 <head>
     <!--
         TODO: Inserimento commenti sotto al post
-        TODO: Slideshow immagini
+        TODO: Migliorare slideshow ???
     -->
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="js/slideshow.js"></script>
 	<?php
 		require 'db_handler.php';
 		$post = getPost($_GET["post_id"]);
