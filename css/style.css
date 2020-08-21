@@ -1,4 +1,6 @@
-.body {
+/*pagina di visualizzazione del blog*/
+
+body {
     background-color: darkred;
 }
 
@@ -45,7 +47,7 @@
     flex-direction: column;
     border-left: 1.8px solid;
     justify-content: center;
-    margin: 2% 0% 2% 0%;
+    margin: 2% 0 2% 0;
 }
 
 .post_recenti {
@@ -64,3 +66,48 @@
     border-top: 2px solid;
     border-bottom: 2px solid;
 }
+
+/*pagina di creazione del blog*/
+
+.creazione {
+    background-color: white;
+    text-align: center;
+}
+
+.consegna {
+    font-size: 1.9vw;
+    font-weight: 500;
+}
+
+#titolo_post {
+    padding: 1%;
+    width: 50%;
+    margin: 2%;
+}
+
+#testo_post {
+    padding: 1%;
+    width: 50%;
+    resize: none;
+    margin: 2%;
+}
+
+.bottone {
+    background-color: white;
+    padding: 1%;
+    border: 1.5px solid;
+    border-radius: 2px 10px;
+}
+
+#bottone_foto {
+    padding: 0.9%;
+    margin: 1% 0 2% 0;
+
+}
+
+.bottone:hover {
+    background-color: black;
+    color: white;
+}
+
+
