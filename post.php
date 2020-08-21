@@ -12,15 +12,15 @@
         }
 	?>
 </head>
-<body>
-    <h1 class="titolo"><?php echo $post["titolo_post"]?></h1>
+<body class = "body">
     <div class="contenitore">
         <div class="sinistra">
+            <h1 class="titolo"><?php echo $post["titolo_post"]?></h1>
             <div>
                 <span class="autore_post"><?php echo $post["nome_utente"] ?> -</span>
                 <span class="data_post"><?php echo $post["data_ora_post"] ?> -</span>
                 <span class="visualizzazioni">20 visualizzazioni -</span>
-                <a href="#commenti">Commenti</a> <br/>
+                <a class = "link" href="#commenti">Commenti</a> <br/>
                 <img class="immagine" src="img/1.jpg" alt="gattino">
                 <p class="testo"><?php echo $post["testo_post"] ?></p>
             </div>
