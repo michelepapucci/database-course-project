@@ -27,26 +27,22 @@
                 <span class="data_post"><?php echo $post["data_ora_post"] ?> -</span>
                 <span class="visualizzazioni">20 visualizzazioni -</span>
                 <a class="link" href="#commenti">Commenti (<?php echo(getNumeroCommenti($_GET["post_id"])); ?>)</a> <br/>
-                <div class = "slideshow">
 					<?php
 						$immagini = getImmaginiPost($_GET["post_id"]);
 						if($immagini != false) {
+						    echo("<div class = \"slideshow\">");
 							foreach($immagini as $immagine) {
 								echo("<img class='immagine' style = 'display:none' src='" . $immagine["url"] . "'/>");
 							}
-
-					?>
-                    <a class="prev">&#10094;</a>
-                    <a class="next">&#10095;</a>
-                    <div style="text-align:center">
-                        <?php
-                                for($i = 0; $i < count($immagini); $i++){
-                                    echo("<span class='dot' id='$i'></span>");
-                                }
-							}
+                            echo("<a class=\"prev\">&#10094;</a>
+                                    <a class=\"next\">&#10095;</a>
+                                    <div style=\"text-align:center\">");
+                            for($i = 0; $i < count($immagini); $i++){
+                                echo("<span class='dot' id='$i'></span>");
+                            }
+                            echo("</div></div>");
+						}
                         ?>
-                    </div>
-                </div>
                 <p class="testo"><?php echo $post["testo_post"] ?></p>
             </div>
             <!-- Id ancora per link ai commenti -->
