@@ -1,19 +1,40 @@
 $(function(){
     let immagini = $(".immagine");
-    immagini.hide()
+    let cursor = 0;
 
-    function slideshow(i) {
+    function goRight(){
+        if(cursor + 1 >= immagini.length){
+            showSlide(0);
+        } else {
+            showSlide(++cursor);
+        }
+    }
+
+    function goLeft(){
+        if(cursor - 1 == -1){
+            showSlide(immagini.length -1);
+        } else {
+            showSlide(--cursor);
+        }
+    }
+
+    function showSlide(i) {
+        cursor = i;
+        $(".dot").removeClass("active");
+        $("#"+cursor).addClass("active");
         immagini.hide();
         immagini.eq(i).show();
-        console.log(immagini[i]);
-        if(i+1 == immagini.length)
-        {
-            i = 0;
-        } else {
-            i++;
-        }
-        setTimeout(slideshow, 5000, i);
-
     }
-    slideshow(0);
+
+    function dotHandler(){
+        cursor = this.id;
+        showSlide(this.id);
+    }
+
+    $(".next").on('click', goRight);
+    $(".prev").on('click', goLeft);
+    $(".dot").on('click', dotHandler);
+
+    showSlide(cursor);
+
 });
