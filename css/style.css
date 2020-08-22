@@ -144,6 +144,18 @@ p {
     margin: 2%;
 }
 
+.appendino {
+    text-align: center;
+}
+
+.inserimento_url {
+    width: 40%;
+    margin: 0.5% 30% 1% 30%;
+    padding: 0.5%;
+    color: darkgray;
+    border: 0.5px solid black;
+}
+
 #testo_post {
     padding: 1%;
     width: 50%;
@@ -161,12 +173,10 @@ p {
 #bottone_foto {
     padding: 0.9%;
     margin: 1% 0 2% 0;
-
 }
 
 .bottone:hover {
     background-color: black;
     color: white;
 }
-
 
