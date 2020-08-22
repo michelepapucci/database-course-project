@@ -128,7 +128,7 @@ p {
 
 /*pagina di creazione del blog*/
 
-.creazione {
+.creazione , .login {
     background-color: white;
     text-align: center;
 }
@@ -136,6 +136,7 @@ p {
 .consegna {
     font-size: 1.9vw;
     font-weight: 500;
+    margin-top: 3%;
 }
 
 #titolo_post {
@@ -178,5 +179,26 @@ p {
 .bottone:hover {
     background-color: black;
     color: white;
+}
+
+/*pagina di login*/
+
+.box {
+    display: flex;
+    flex-direction: column;
+    border: 1.9px solid;
+    width: 30%;
+    margin: 2% auto 0 auto;
+    padding: 2%;
+}
+
+.consegna_piccola {
+    font-size: 1.1vw;
+    font-weight: 500;
+}
+
+.campo_piccolo {
+    padding: 1%;
+    margin: 2% 20% 2% 20%;
 }
 
