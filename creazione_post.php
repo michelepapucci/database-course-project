@@ -6,9 +6,6 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="js/img.js"></script>
-    <?php
-    require 'db_handler.php';
-    ?>
 </head>
 <body class = "creazione">
     <form action = "insert_post.php" method = "post">
@@ -21,4 +18,5 @@
         <textarea id = "testo_post" name = "testo_post" maxlength = "10000" rows = "20"></textarea><br/>
         <input type = "submit" value = "Pubblica" class = "bottone">
     </form>
-</body><?php
+</body>
+<!-- TODO: Visualizzare numero di caratteri rimanenti durante scrittura post -->

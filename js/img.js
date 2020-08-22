@@ -1,9 +1,11 @@
 //file che fa comparire aree di testo in cui inserire l'url delle foto
 "use strict";
 
-function gestoreCaricamentoImmagini () {
+let c = 5;
+
+function gestoreCaricamentoImmagini() {
     try {
-        if (c > 0) {
+        if(c > 0) {
             $('<input>').attr({
                 type: 'text',
                 class: 'inserimento_url',
@@ -13,22 +15,18 @@ function gestoreCaricamentoImmagini () {
             }).appendTo('.appendino');
             c--;
         }
-    } catch (e) {
-        alert("gestoreLoad " + e);
+    } catch(e) {
+        console.error("gestoreCaricamentoImmagini " + e);
         return false;
     }
 }
 
-let nodoBottone;
-let c = 5;
-
-function gestoreLoad () {
+function gestoreLoad() {
     try {
-        $("#bottone_foto").on('click' , gestoreCaricamentoImmagini);
-    } catch (e) {
-        alert("gestoreLoad " + e);
+        $("#bottone_foto").on('click', gestoreCaricamentoImmagini);
+    } catch(e) {
+        console.error("gestoreLoad " + e);
     }
 }
-
 
 $(gestoreLoad);
