@@ -21,4 +21,5 @@
         <textarea id = "testo_post" name = "testo_post" maxlength = "10000" rows = "20"></textarea><br/>
         <input type = "submit" value = "Pubblica" class = "bottone">
     </form>
-</body><?php
+</body>
+</html>

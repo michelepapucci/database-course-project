@@ -12,11 +12,13 @@
 <body class = "login">
     <p class = "consegna">Accedi</p><br/>
     <div class = "box">
-        <label for="email" class = "consegna_piccola">E-mail</label><br/>
-        <input type = "text" class = "campo_piccolo" id="email" name="email" maxlength="50" ><br/>
-        <label for="password" class = "consegna_piccola">Password</label><br/>
-        <input type = "password" class = "campo_piccolo" id="password" name="password" maxlength="16" ><br/>
+        <form action = "" method = "post">
+            <label for="email" class = "consegna_piccola">E-mail</label><br/>
+            <input type = "text" class = "campo_piccolo" id="email" name="email" maxlength="50" ><br/>
+            <label for="password" class = "consegna_piccola">Password</label><br/>
+            <input type = "password" class = "campo_piccolo" id="password" name="password" maxlength="16" ><br/>
+        </form>
     </div><br/>
     <span class = "consegna_piccola">Non hai ancora un account? <br/> Registrati </span><a class = "link consegna_piccola" href = "registrazione.php">qui</a>
 </body>
-<?php
+</html>
