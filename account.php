@@ -27,6 +27,11 @@
 		{
 			global $pdo;
 
+			$nome = trim($nome);
+			$email = trim($email);
+			$documento = trim($documento);
+
+
 			if (!$this->checkNome($nome)) {
 				throw new Exception("Nome utente non valido");
 			}

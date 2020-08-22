@@ -34,7 +34,10 @@
 	{
 		$conn = db_connect();
 		if($conn != false) {
-			$stmt = $conn->prepare("SELECT * FROM post WHERE id_post = :id");
+			$stmt = $conn->prepare("SELECT id_post, titolo_post, testo_post, data_ora_post, nome_utente
+											FROM post, utente_registrato AS a
+											WHERE id_post = :id
+											AND post.id_utente = a.id_utente");
 			$stmt -> bindParam(':id', $post_id);
 			$stmt -> execute();
 			if($post = $stmt -> fetch()) {
@@ -78,7 +81,11 @@
 	{
 		$conn = db_connect();
 		if($conn != false) {
-			$stmt = $conn->prepare("SELECT * FROM commento WHERE id_post = :id");
+			$stmt = $conn->prepare("
+									SELECT data_ora_comm, testo_comm, nome_utente
+									FROM commento, utente_registrato AS a
+									WHERE id_post = :id
+									AND commento.id_utente = a.id_utente ");
 			$stmt -> bindParam(':id', $post_id);
 			$stmt -> execute();
 			if($commenti = $stmt -> fetchAll()) {
