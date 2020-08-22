@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	require "db_handler.php";
 	$pdo = db_connect();
 
@@ -6,9 +7,6 @@
 	{
 		private $id;
 		private $nome;
-		private $email;
-		private $documento;
-		private $cellulare;
 		private $premium;
 		private $autenticato;
 
@@ -16,9 +14,6 @@
 		{
 			$this->id = NULL;
 			$this->nome = NULL;
-			$this->email = NULL;
-			$this->documento = NULL;
-			$this->cellulare = NULL;
 			$this->premium = false;
 			$this->autenticato = false;
 		}
@@ -31,41 +26,87 @@
 			$email = trim($email);
 			$documento = trim($documento);
 
-
 			if (!$this->checkNome($nome)) {
 				throw new Exception("Nome utente non valido");
 			}
 			if (!$this->checkPsw($password)) {
 				throw new Exception("Password non valida");
 			}
-			if(!$this->checkEmail($email)){
+			if (!$this->checkEmail($email)) {
 				throw new Exception("Email non valida");
 			}
-			if(!$this->checkDocumento($documento)){
+			if (!$this->checkDocumento($documento)) {
 				throw new Exception("Documento non valido");
 			}
-			if(!$this->checkCellulare($cellulare)){
+			if (!$this->checkCellulare($cellulare)) {
 				throw new Exception("Cellulare non valido");
 			}
-			if(!is_null($this->checkNomeOccupato($nome))){
+			if (!is_null($this->checkNomeOccupato($nome))) {
 				throw new Exception("Nome utente non disponibile");
 			}
-			if(!is_null($this->checkEmailOccupata($email))){
+			if (!is_null($this->checkEmailOccupata($email))) {
 				throw new Exception("Email già in uso");
 			}
 
 			try {
-				$stmt = $pdo -> prepare("INSERT INTO utente_registrato(nome_utente, password, email, documento, cellulare, premium)
+				$stmt = $pdo->prepare("INSERT INTO utente_registrato(nome_utente, password, email, documento, cellulare, premium)
 			VALUES(:nome, :psw, :email, :documento, :cellulare, false)");
 				$hashpsw = password_hash($password, PASSWORD_DEFAULT);
 				$values = array(':nome' => $nome, ':psw' => $hashpsw, ':email' => $email, ':documento' => $documento, ':cellulare' => $cellulare);
-				$stmt -> execute($values);
+				$stmt->execute($values);
 			} catch (PDOException $e) {
-				Throw new Exception("Errore avvenuto nell'inserzione del Database" . $e);
+				throw new Exception("Errore avvenuto nell'inserzione del Database" . $e);
 			}
 
-
 			return $pdo->lastInsertId();
+		}
+
+		public function login(string $email, string $psw): bool
+		{
+			global $pdo;
+
+			$email = trim($email);
+			if (!$this->checkEmail($email) || !$this->checkPsw($psw)) {
+				return false;
+			}
+
+			try {
+				$stmt = $pdo->prepare("
+										SELECT *
+										FROM utente_registrato
+										WHERE email = :email");
+				$stmt->execute(array(':email' => $email));
+			} catch (PDOException $e) {
+				throw new Exception("Errore nella query accesso al Database");
+			}
+			$res = $stmt->fetch();
+			if (is_array($res)) {
+				if (password_verify($psw, $res["password"])) {
+					$this->id = $res["id_utente"];
+					$this->nome = $res["nome_utente"];
+					$this->autenticato = true;
+					$this->premium = $res["premium"];
+					$this->registraSessione();
+					return true;
+				}
+			}
+			return false;
+		}
+
+		public function registraSessione()
+		{
+			global $pdo;
+
+			if (session_status() == PHP_SESSION_ACTIVE) {
+				try {
+					$stmt = $pdo->prepare("
+											REPLACE INTO sessione_utente(id_sessione, id_utente, login_time)
+											VALUES(:s_id, :id, NOW())");
+					$stmt->execute(array(':s_id' => session_id(), ':id' => $this->id));
+				} catch (PDOException $e) {
+					throw new Exception("Registrazione sessione fallita");
+				}
+			}
 		}
 
 		public function checkNome(string $nome): bool
@@ -115,13 +156,13 @@
 		public function checkNomeOccupato(string $nome)
 		{
 			global $pdo;
-			try{
-				$stmt = $pdo -> prepare('SELECT id_utente FROM utente_registrato WHERE nome_utente = :nome');
-				$stmt -> bindParam(":nome", $nome);
-				$stmt -> execute();
-				$res = $stmt -> fetch();
+			try {
+				$stmt = $pdo->prepare('SELECT id_utente FROM utente_registrato WHERE nome_utente = :nome');
+				$stmt->bindParam(":nome", $nome);
+				$stmt->execute();
+				$res = $stmt->fetch();
 			} catch (PDOException $e) {
-				Throw new Exception("Errore query Database");
+				throw new Exception("Errore query Database");
 			}
 			return $res["id_utente"];
 		}
@@ -129,28 +170,32 @@
 		public function checkEmailOccupata(string $email)
 		{
 			global $pdo;
-			try{
-				$stmt = $pdo -> prepare('SELECT id_utente FROM utente_registrato WHERE email = :email');
-				$stmt -> bindParam(":email", $email);
-				$stmt -> execute();
-				$res = $stmt -> fetch();
+			try {
+				$stmt = $pdo->prepare('SELECT id_utente FROM utente_registrato WHERE email = :email');
+				$stmt->bindParam(":email", $email);
+				$stmt->execute();
+				$res = $stmt->fetch();
 			} catch (PDOException $e) {
-				Throw new Exception("Errore query Database");
+				throw new Exception("Errore query Database");
 			}
 			return $res["id_utente"];
 		}
 	}
 
 	$account = new Account();
-	try{
-		$id = $account->nuovoAccount("Sofia", "porcodio123", "ciao2@gmail.com", "AX12345BB", 3332241110);
-		echo $id;
-	} catch(Exception $e) {
-		echo $e -> getMessage();
+	try {
+		//$id = $account->nuovoAccount("michele", "porcodio123", "ciao@gmail.com", "AX12345BB", 3332241110);
+		//echo $id;
+		echo $account ->login("ciao@gmail.com", "porcodio123");
+		print_r($account);
+	} catch (Exception $e) {
+		echo $e->getMessage();
 		die();
 	}
 
 
 	/*
+	 * TODO: session login
 	 * TODO: Delete e Edit Account
+	 * TODO: Rimuovere la roba di test in giro e commentare
 	 */

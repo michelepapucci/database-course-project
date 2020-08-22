@@ -1,7 +1,7 @@
 <?php
 // Definisco host, nome db, username e password.
 	$dbhost = "localhost";
-	$dbname = "bdd_1";
+	$dbname = "bdd";
 	$dbuser = "admin";
 	$dbpsw = "password";
 
