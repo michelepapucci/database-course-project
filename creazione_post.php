@@ -20,3 +20,4 @@
     </form>
 </body>
 <!-- TODO: Visualizzare numero di caratteri rimanenti durante scrittura post -->
+</html>
