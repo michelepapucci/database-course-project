@@ -1,3 +1,7 @@
+<?php
+	session_start();
+	$_SESSION["blog_attivo"] = $_GET["blog"];
+?>
 <!DOCTYPE html>
 <html lang="it">
 <head>

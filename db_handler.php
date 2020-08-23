@@ -116,3 +116,22 @@
 		$conn = null;
 		return false;
 	}
+
+	function inserisciPost($titolo, $testo, $id_blog, $id_utente) {
+		$conn = db_connect();
+		if($conn != false) {
+			try {
+				$stmt = $conn ->prepare("
+												INSERT INTO post(titolo_post, testo_post, data_ora_post, id_blog, id_utente)
+												VALUES(:tit, :tes, NOW(), :b_id, :u_id)");
+				$stmt -> execute(array(':tit' => $titolo, ':tes' => $testo, ':b_id' => $id_blog, ':u_id' => $id_utente));
+				return true;
+			} catch(PDOException $e) {
+				throw new Exception("Impossibile inserire il Post!");
+			}
+		}
+		$conn = null;
+		return false;
+	}
+
+	/* TODO: Aggiungere Try Catch */

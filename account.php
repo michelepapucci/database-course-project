@@ -233,7 +233,14 @@
 			}
 			return $res["id_utente"];
 		}
+
+		public function getId(){
+			return $this->id;
+		}
 	}
+
+	$account = new Account();
+	$account ->login("ciao@gmail.com", "porcodio123");
 
 	/*
 	 * TODO: Delete e Edit Account
