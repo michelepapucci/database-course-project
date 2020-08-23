@@ -1,5 +1,4 @@
 <?php
-	session_start();
 	require "db_handler.php";
 	$pdo = db_connect();
 
@@ -26,25 +25,25 @@
 			$email = trim($email);
 			$documento = trim($documento);
 
-			if (!$this->checkNome($nome)) {
+			if(!$this->checkNome($nome)) {
 				throw new Exception("Nome utente non valido");
 			}
-			if (!$this->checkPsw($password)) {
+			if(!$this->checkPsw($password)) {
 				throw new Exception("Password non valida");
 			}
-			if (!$this->checkEmail($email)) {
+			if(!$this->checkEmail($email)) {
 				throw new Exception("Email non valida");
 			}
-			if (!$this->checkDocumento($documento)) {
+			if(!$this->checkDocumento($documento)) {
 				throw new Exception("Documento non valido");
 			}
-			if (!$this->checkCellulare($cellulare)) {
+			if(!$this->checkCellulare($cellulare)) {
 				throw new Exception("Cellulare non valido");
 			}
-			if (!is_null($this->checkNomeOccupato($nome))) {
+			if(!is_null($this->checkNomeOccupato($nome))) {
 				throw new Exception("Nome utente non disponibile");
 			}
-			if (!is_null($this->checkEmailOccupata($email))) {
+			if(!is_null($this->checkEmailOccupata($email))) {
 				throw new Exception("Email già in uso");
 			}
 
@@ -54,7 +53,7 @@
 				$hashpsw = password_hash($password, PASSWORD_DEFAULT);
 				$values = array(':nome' => $nome, ':psw' => $hashpsw, ':email' => $email, ':documento' => $documento, ':cellulare' => $cellulare);
 				$stmt->execute($values);
-			} catch (PDOException $e) {
+			} catch(PDOException $e) {
 				throw new Exception("Errore avvenuto nell'inserzione del Database" . $e);
 			}
 
@@ -66,7 +65,7 @@
 			global $pdo;
 
 			$email = trim($email);
-			if (!$this->checkEmail($email) || !$this->checkPsw($psw)) {
+			if(!$this->checkEmail($email) || !$this->checkPsw($psw)) {
 				return false;
 			}
 
@@ -76,12 +75,12 @@
 										FROM utente_registrato
 										WHERE email = :email");
 				$stmt->execute(array(':email' => $email));
-			} catch (PDOException $e) {
+			} catch(PDOException $e) {
 				throw new Exception("Errore nella query accesso al Database");
 			}
 			$res = $stmt->fetch();
-			if (is_array($res)) {
-				if (password_verify($psw, $res["password"])) {
+			if(is_array($res)) {
+				if(password_verify($psw, $res["password"])) {
 					$this->id = $res["id_utente"];
 					$this->nome = $res["nome_utente"];
 					$this->autenticato = true;
@@ -93,17 +92,71 @@
 			return false;
 		}
 
+		public function loginDaSessione(): bool
+		{
+			global $pdo;
+
+			if(session_status() == PHP_SESSION_ACTIVE) {
+				try {
+					$stmt = $pdo->prepare("
+													SELECT *
+													FROM sessione_utente AS s, utente_registrato AS a
+													WHERE id_sessione = :s_id
+													AND login_time >= (NOW() - INTERVAL 7 DAY)
+													AND a.id_utente = s.id_utente");
+					$stmt->execute(array(':s_id' => session_id()));
+				} catch(PDOException $e) {
+					throw new Exception("Errore query session");
+				}
+				$res = $stmt->fetch();
+				if(is_array($res)) {
+					$this->id = $res["id_utente"];
+					$this->nome = $res["nome_utente"];
+					$this->autenticato = true;
+					$this->premium = $res["premium"];
+					return true;
+				}
+			}
+			return false;
+		}
+
+		public function logout()
+		{
+			global $pdo;
+
+			if(is_null($this->id))
+			{
+				return;
+			}
+
+			$this->id = NULL;
+			$this->nome = NULL;
+			$this->autenticato = false;
+			$this->premium = false;
+
+			if(session_status() == PHP_SESSION_ACTIVE) {
+				try {
+					$stmt = $pdo->prepare("
+													DELETE FROM sessione_utente
+													WHERE id_sessione = :s_id");
+					$stmt ->execute(array(':s_id'=>session_id()));
+				} catch(PDOException $e){
+						throw new Exception("Errore Eliminazione sessione dal Database");
+				}
+			}
+		}
+
 		public function registraSessione()
 		{
 			global $pdo;
 
-			if (session_status() == PHP_SESSION_ACTIVE) {
+			if(session_status() == PHP_SESSION_ACTIVE) {
 				try {
 					$stmt = $pdo->prepare("
 											REPLACE INTO sessione_utente(id_sessione, id_utente, login_time)
 											VALUES(:s_id, :id, NOW())");
 					$stmt->execute(array(':s_id' => session_id(), ':id' => $this->id));
-				} catch (PDOException $e) {
+				} catch(PDOException $e) {
 					throw new Exception("Registrazione sessione fallita");
 				}
 			}
@@ -111,7 +164,7 @@
 
 		public function checkNome(string $nome): bool
 		{
-			if (mb_strlen($nome) > 16) {
+			if(mb_strlen($nome) > 16) {
 				return false;
 			} else {
 				return true;
@@ -121,10 +174,10 @@
 		public function checkPsw(string $psw): bool
 		{
 			$res = true;
-			if (mb_strlen($psw) > 16) {
+			if(mb_strlen($psw) > 16) {
 				$res = false;
 			}
-			if (!preg_match("/\d+/", $psw)) {
+			if(!preg_match("/\d+/", $psw)) {
 				$res = false;
 			}
 			return $res;
@@ -137,7 +190,7 @@
 
 		public function checkDocumento(string $documento): bool
 		{
-			if (mb_strlen($documento) == 9) {
+			if(mb_strlen($documento) == 9) {
 				return true;
 			} else {
 				return false;
@@ -146,7 +199,7 @@
 
 		public function checkCellulare(int $cellulare): bool
 		{
-			if (mb_strlen((string)$cellulare) == 10) {
+			if(mb_strlen((string)$cellulare) == 10) {
 				return true;
 			} else {
 				return false;
@@ -161,7 +214,7 @@
 				$stmt->bindParam(":nome", $nome);
 				$stmt->execute();
 				$res = $stmt->fetch();
-			} catch (PDOException $e) {
+			} catch(PDOException $e) {
 				throw new Exception("Errore query Database");
 			}
 			return $res["id_utente"];
@@ -175,27 +228,14 @@
 				$stmt->bindParam(":email", $email);
 				$stmt->execute();
 				$res = $stmt->fetch();
-			} catch (PDOException $e) {
+			} catch(PDOException $e) {
 				throw new Exception("Errore query Database");
 			}
 			return $res["id_utente"];
 		}
 	}
 
-	$account = new Account();
-	try {
-		//$id = $account->nuovoAccount("michele", "porcodio123", "ciao@gmail.com", "AX12345BB", 3332241110);
-		//echo $id;
-		echo $account ->login("ciao@gmail.com", "porcodio123");
-		print_r($account);
-	} catch (Exception $e) {
-		echo $e->getMessage();
-		die();
-	}
-
-
 	/*
-	 * TODO: session login
 	 * TODO: Delete e Edit Account
-	 * TODO: Rimuovere la roba di test in giro e commentare
+	 * TODO: commentare
 	 */
