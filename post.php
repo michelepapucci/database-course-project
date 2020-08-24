@@ -24,7 +24,6 @@
 	?>
     <title><?php echo $post["titolo_post"] ?></title>
 </head>
-
 <body>
     <div class="contenitore">
         <div class="sinistra">

@@ -128,7 +128,7 @@ p {
 
 /*pagina di creazione del blog*/
 
-.creazione , .login {
+.creazione , .autenticazione {
     background-color: white;
     text-align: center;
 }
@@ -153,7 +153,6 @@ p {
     width: 40%;
     margin: 0.5% 30% 1% 30%;
     padding: 0.5%;
-    color: darkgray;
     border: 0.5px solid black;
 }
 
@@ -174,6 +173,12 @@ p {
 #bottone_foto {
     padding: 0.9%;
     margin: 1% 0 2% 0;
+}
+
+.bottone_piccolo {
+    padding: 1.5%;
+    border: 1.2px solid;
+    margin: 2% 0 1% 0;
 }
 
 .bottone:hover {
