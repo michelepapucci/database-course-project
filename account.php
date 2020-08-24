@@ -40,16 +40,13 @@
 			if(!$this->checkCellulare($cellulare)) {
 				throw new Exception("Cellulare non valido");
 			}
-			if(!is_null($this->checkNomeOccupato($nome))) {
-				throw new Exception("Nome utente non disponibile");
-			}
 			if(!is_null($this->checkEmailOccupata($email))) {
 				throw new Exception("Email già in uso");
 			}
 
 			try {
-				$stmt = $pdo->prepare("INSERT INTO utente_registrato(nome_utente, password, email, documento, cellulare, premium)
-			VALUES(:nome, :psw, :email, :documento, :cellulare, false)");
+				$stmt = $pdo->prepare("INSERT INTO utente_registrato(nome_utente, password, email, documento, cellulare, premium, data_ora_reg)
+			VALUES(:nome, :psw, :email, :documento, :cellulare, false, NOW())");
 				$hashpsw = password_hash($password, PASSWORD_DEFAULT);
 				$values = array(':nome' => $nome, ':psw' => $hashpsw, ':email' => $email, ':documento' => $documento, ':cellulare' => $cellulare);
 				$stmt->execute($values);
@@ -102,7 +99,7 @@
 													SELECT *
 													FROM sessione_utente AS s, utente_registrato AS a
 													WHERE id_sessione = :s_id
-													AND login_time >= (NOW() - INTERVAL 7 DAY)
+													AND data_ora_login >= (NOW() - INTERVAL 7 DAY)
 													AND a.id_utente = s.id_utente");
 					$stmt->execute(array(':s_id' => session_id()));
 				} catch(PDOException $e) {
@@ -153,7 +150,7 @@
 			if(session_status() == PHP_SESSION_ACTIVE) {
 				try {
 					$stmt = $pdo->prepare("
-											REPLACE INTO sessione_utente(id_sessione, id_utente, login_time)
+											REPLACE INTO sessione_utente(id_sessione, id_utente, data_ora_login)
 											VALUES(:s_id, :id, NOW())");
 					$stmt->execute(array(':s_id' => session_id(), ':id' => $this->id));
 				} catch(PDOException $e) {
@@ -233,9 +230,18 @@
 			}
 			return $res["id_utente"];
 		}
+
+		public function getId(){
+			return $this->id;
+		}
 	}
 
+	//$account = new Account();
+	//$account -> nuovoAccount("Michele", "Porcodio123","ciao@gmail.com", "AX12345DP", "3332221110");
+	//$account = new Account();
+	//$account -> nuovoAccount("Sofia", "Leonardo97","ciao2@gmail.com", "AX12345DP", "3332221110");
 	/*
 	 * TODO: Delete e Edit Account
 	 * TODO: commentare
+	 * TODO: cellulare trasformarlo in stringa.
 	 */
