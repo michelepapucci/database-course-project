@@ -34,7 +34,7 @@
                 <label for="titolo_post" class="consegna">Scrivi qui il tuo titolo</label><br/>
                 <input type="text" id="titolo_post" name="titolo_post" maxlength="100"><br/>
                 <div class="appendino">
-                    <input type="button" value="Carica qui le tue foto" class="bottone" id="bottone_foto"><br/>
+                    <input type="button" value="Carica qui le tue foto" class="bottone bottone_foto" id="bottone_foto"><br/>
                 </div>
                 <label for="testo_post" class="consegna">Scrivi qui il tuo post</label><br/>
                 <textarea id="testo_post" name="testo_post" maxlength="10000" rows="20"></textarea><br/>
