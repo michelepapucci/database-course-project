@@ -1,6 +1,9 @@
 <?php
 	session_start();
+	require 'account.php';
 	$_SESSION["blog_attivo"] = $_GET["blog"];
+	$account = new Account();
+	$account -> login("ciao@gmail.com", "Porcodio123");
 ?>
 <!DOCTYPE html>
 <html lang="it">

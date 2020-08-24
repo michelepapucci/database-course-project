@@ -12,11 +12,12 @@
 	}
 	else {
 		if(inserisciPost($_POST["titolo_post"], $_POST["testo_post"], $_SESSION["blog_attivo"], $account->getId())){
-			echo "inserito con successo";
+			echo "Post inserito con successo";
 		}
 	}
 
 	/*
 	 * TODO: Aggiungere immagini al post.
+	 * TODO: Controllare che l'utente loggato possa scrivere un post sul blog in questione.
 	 */
 
