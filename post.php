@@ -10,6 +10,7 @@
     <script src="js/slideshow.js"></script>
 	<?php
 		require 'db_handler.php';
+		$pdo = db_connect();
 		if(isset($_GET["id_post"])){
 			$post = getPost($_GET["id_post"]);
 			if ($post == false) {
@@ -92,7 +93,7 @@
                         ");
 					}
 				}
-			?>
+			$pdo = null; ?>
         </div>
     </div>
 </body>

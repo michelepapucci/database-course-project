@@ -1,7 +1,4 @@
 <?php
-	require "db_handler.php";
-	$pdo = db_connect();
-
 	class Account
 	{
 		private $id;

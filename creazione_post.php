@@ -1,9 +1,13 @@
 <?php
 	session_start();
 	require 'account.php';
+	require 'db_handler.php';
+
+	$pdo = db_connect();
+
 	$_SESSION["blog_attivo"] = $_GET["blog"];
-	$account = new Account();
-	$account -> login("ciao@gmail.com", "Porcodio123");
+
+	$pdo = null;
 ?>
 <!DOCTYPE html>
 <html lang="it">
