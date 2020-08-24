@@ -233,11 +233,13 @@
 		}
 	}
 
-	//$account = new Account();
 	//$account -> nuovoAccount("Michele", "Porcodio123","ciao@gmail.com", "AX12345DP", "3332221110");
 	//$account = new Account();
 	//$account -> nuovoAccount("Sofia", "Leonardo97","ciao2@gmail.com", "AX12345DP", "3332221110");
+
 	/*
+	 *
+	 *
 	 * TODO: Delete e Edit Account
 	 * TODO: commentare
 	 * TODO: cellulare trasformarlo in stringa.
