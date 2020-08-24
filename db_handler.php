@@ -22,9 +22,8 @@
 		try {
 			$pdo = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpsw, $options);
 			return $pdo;
-		} catch(Exception $e) {
-			error_log($e->getMessage());
-			echo("Errore 500: Impossibile connettersi al Database!");
+		} catch(PDOException $e) {
+			throw new Exception("Impossibile connettersi al database!");
 			return false;
 		}
 	}

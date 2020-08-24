@@ -10,7 +10,9 @@
 	$logged = $account->loginDaSessione();
 
 	if(!$logged) {
-		die("Impossibile identificare autore post");
+		$pdo = null;
+		echo("Immpossibile identificare autore del post.\n<a href = 'login.php'>Login In </a>");
+		exit();
 	} else {
 		$immagini = array();
 		for($i = 1; $i < 6; $i++) {
