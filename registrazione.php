@@ -9,23 +9,21 @@
     require 'db_handler.php';
     ?>
 </head>
-<body>
-    <h1>Vendi i tuoi dati personali al diavolo</h1>
-    <form method = "post" action = "controlla.php" id = "form">
-        <label for = "cognome">Cognome:</label>
-        <input type = "text" id = "cognome" name = "cognome" maxlength = "40"><br>
-        <label for = "nome">Nome:</label>
-        <input type = "text" id = "nome" name = "nome" maxlength = "30"><br>
-        <label for = "matricola">Matricola:</label>
-        <input type = "text" id = "matricola" name = "matricola" maxlength = "12"><br>
-        <label for = "email">Email:</label>
-        <input type = "text" id = "email" name = "email" maxlength = "30"><br>
-        <label for = "telefono">Telefono:</label>
-        <input type = "text" id = "telefono" name = "telefono" maxlength = "15"><br>
-        <label for = "richieste_particolari">Richieste particolari:</label><br>
-        <textarea id = "richieste_particolari" name = "richieste_particolari" rows = "12" cols = "60"></textarea><br>
-        <input type = "submit" id = "invio" value = "Invio"><br>
-        <input type = "reset"><br>
-        <p id = "messaggio"></p>
-    </form>
+<body class="autenticazione">
+    <p class = "consegna">Registrati</p>
+    <div class = "box">
+        <form id = "form" action = "" method = "post">
+            <label for = "nome_utente" class = "consegna_piccola">Scegli un nome utente<br/>(Questo nome sarà visibile agli altri utenti)</label>
+            <input type = "text" class = "campo_piccolo" id = "nome_utente" name = "nome_utente" maxlength = "30"><br>
+            <label for = "email" class = "consegna_piccola">Inserisci una e-mail</label>
+            <input type = "text" class = "campo_piccolo" id = "email" name = "email" maxlength = "30"><br>
+            <label for = "cellulare" class = "consegna_piccola">Inserisci un cellulare</label>
+            <input type = "text" class = "campo_piccolo" id = "cellulare" name = "cellulare" maxlength = "10"><br>
+            <label for = "documento" class = "consegna_piccola">Inserisci un documento d'identità</label>
+            <input type = "text" class = "campo_piccolo" id = "documento" name = "documento" maxlength = "9"><br>
+            <label for = "password" class = "consegna_piccola">Inserisci una password<br/>(La password deve contenere almeno un numero)</label><br>
+            <input type = "password" class = "campo_piccolo" id = "password" name = "password" maxlength = "16"</input><br>
+            <input type = "submit" class = "bottone bottone_piccolo" id = "invio" value = "Registrati"><br>
+        </form>
+    </div>
 </body>
