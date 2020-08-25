@@ -5,9 +5,6 @@
     <title>Registrazione</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <?php
-    require 'db_handler.php';
-    ?>
 </head>
 <body class="autenticazione">
     <p class = "consegna">Registrati</p>

@@ -11,7 +11,7 @@
     <div class="box">
         <form action="check_login.php" method="post">
             <label for="email" class="consegna_piccola">E-mail</label><br/>
-            <input type="text" class="campo_piccolo" id="email" name="email" maxlength="50"><br/>
+            <input type="email" class="campo_piccolo" id="email" name="email" maxlength="50"><br/>
             <label for="password" class="consegna_piccola">Password</label><br/>
             <input type="password" class="campo_piccolo" id="password" name="password" maxlength="16"><br/>
             <input type="submit" class="bottone bottone_piccolo" id="invio" value="Accedi"><br>

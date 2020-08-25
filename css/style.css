@@ -81,7 +81,7 @@ p {
 
 /* On hover, add a black background color with a little bit see-through */
 .prev:hover, .next:hover {
-    background-color: rgba(0,0,0,0.8);
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
 .dot {
@@ -128,7 +128,7 @@ p {
 
 /*pagina di creazione del blog*/
 
-.creazione , .autenticazione {
+.creazione, .autenticazione {
     background-color: white;
     text-align: center;
 }
@@ -162,6 +162,20 @@ p {
     resize: none;
     margin: 2%;
 }
+
+.post_area {
+    position:relative;
+}
+
+.post_area a{
+    position: absolute  ;;
+    right: 25%;
+    bottom: 10%;
+    color: grey;
+}
+
+/*TODO: Sistemare altezza del coso. */
+
 
 .bottone {
     background-color: white;
