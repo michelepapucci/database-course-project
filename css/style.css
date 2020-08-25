@@ -1,4 +1,14 @@
 /*pagina di visualizzazione del blog*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap'); /*Roboto*/
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap'); /*Open Sans*/
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap'); /*Lato*/
+@import url('https://fonts.googleapis.com/css2?family=Slabo+27px&display=swap'); /*Slabo*/
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap'); /*Oswald*/
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap'); /*Suource Sans Pro*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap'); /*Montserrat*/
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap'); /*Raleway*/
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap'); /*PT Sans*/
+@import url('https://fonts.googleapis.com/css2?family=Lora&display=swap'); /*Lora*/
 
 body {
     background-color: darkred;
@@ -126,7 +136,7 @@ p {
     border-bottom: 2px solid;
 }
 
-/*pagina di creazione del blog*/
+/*pagina di creazione del post*/
 
 .creazione, .autenticazione {
     background-color: white;
@@ -226,14 +236,54 @@ p {
 .bottone_sfondo {
     background-color: white;
     margin: 0 0 1% 1%;
-    padding: 0.5%;
-    border: 1.5px solid;
+    padding: 0.4%;
+    border: 1px solid;
 }
 
 .selezione {
     padding: 0.5%;
     margin: 1%;
-    border: 1.5px solid;
+    border: 1px solid;
+}
+
+.roboto {
+    font-family: Roboto, sans-serif;
+}
+
+.open_sans {
+    font-family: "Open sans", sans-serif;
+}
+
+.lato {
+    font-family: Lato, sans-serif;
+}
+
+.slabo {
+    font-family: Slabo, serif;
+}
+
+.oswald {
+    font-family: Oswald, sans-serif;
+}
+
+.source_sans_pro {
+    font-family: "Source Sans Pro", sans-serif;
+}
+
+.montserrat {
+    font-family: Montserrat, sans-serif;
+}
+
+.raleway {
+    font-family: Raleway, sans-serif;
+}
+
+.pt_sans {
+    font-family: "PT Sans", sans-serif;
+}
+
+.lora {
+    font-family: Lora, serif;
 }
 
 .tema {
@@ -242,3 +292,4 @@ p {
     margin: 1%;
     border: 1px solid;
 }
+
