@@ -7,7 +7,7 @@ function gestoreCaricamentoImmagini() {
     try {
         if(c > 0) {
             $('<input>').attr({
-                type: 'text',
+                type: 'url',
                 class: 'inserimento_url',
                 name: "immagine" + (6 - c),
                 id: "immagine" + (6 - c),
