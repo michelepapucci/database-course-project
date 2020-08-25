@@ -45,7 +45,6 @@
                 <input type="submit" value="Pubblica" class="bottone">
             </form>
         </body>
-        <!-- TODO: Visualizzare numero di caratteri rimanenti durante scrittura post -->
         </html>
 		<?php
 	}
