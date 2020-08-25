@@ -6,12 +6,14 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <?php
+        /*
         session_start();
         require 'db_handler.php';
         require 'account.php';
         $pdo = db_connect();
 		$account = new Account();
-		$account ->login("ciao@gmail.com", "Porcodio123");
+		//login
+        */
     ?>
 </head>
 <body class = "autenticazione">
