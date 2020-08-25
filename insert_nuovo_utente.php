@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	ob_start();
+	//	ob_start();
 
 	require 'db_handler.php';
 	require 'account.php';
@@ -10,7 +10,7 @@
 		$account = new Account();
 		$id = $account -> nuovoAccount($_POST["nome_utente"], $_POST["password"], $_POST["email"], $_POST["documento"], $_POST["cellulare"]);
 		$account -> login($_POST["email"], $_POST["password"]);
-		header("index.php");
+		header("Location: index.php");
 	} catch (Exception $e) {
 		echo $e ->getMessage();
 	}

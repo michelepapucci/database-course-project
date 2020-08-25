@@ -1,2 +1,2 @@
 <?php
-	echo "sei sulla cazzo di home";	
+	echo "sei sulla cazzo di home";
