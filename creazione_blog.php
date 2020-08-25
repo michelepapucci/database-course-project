@@ -6,7 +6,8 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <?php
-    require 'db_handler.php';
+        require 'db_handler.php';
+        $pdo = db_connect();
     ?>
 </head>
 <body class="creazione">
@@ -33,7 +34,16 @@
         </select><br/>
         <label for = "categoria" class = "consegna_piccola">Scegli una categoria in cui inserire il tuo blog</label>
         <select class = "selezione" id = "categoria" name = "categoria" required>
-
+            <?php
+                try{
+					$categorie = getCategorie();
+					foreach($categorie as $cat){
+					    echo "<option value = '". $cat["id_cat"] . "'>" . $cat["nome_cat"] . "</option>";
+                    }
+                } catch(Exception $e) {
+                    echo "<option disabled> $e -> getMessage()</option>";
+                }
+            ?>
         </select><br>
         <label for="tema" class="consegna_piccola">Scegli un tema da dare al tuo blog</label><br/>
         <input type="text" class = "tema" id="tema" name="tema" maxlength="30" required><br/>
