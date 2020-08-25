@@ -139,7 +139,7 @@ p {
     margin-top: 3%;
 }
 
-#titolo_post {
+#titolo_post, #titolo_blog {
     padding: 1%;
     width: 50%;
     margin: 2%;
@@ -170,7 +170,7 @@ p {
     border-radius: 2px 10px;
 }
 
-#bottone_foto {
+.bottone_foto {
     padding: 0.9%;
     margin: 1% 0 2% 0;
 }
@@ -207,3 +207,24 @@ p {
     margin: 2% 20% 2% 20%;
 }
 
+/*pagina di creazione del blog*/
+
+.bottone_sfondo {
+    background-color: white;
+    margin: 0 0 1% 1%;
+    padding: 0.5%;
+    border: 1.5px solid;
+}
+
+.selezione {
+    padding: 0.5%;
+    margin: 1%;
+    border: 1.5px solid;
+}
+
+.tema {
+    width: 30%;
+    padding: 0.8%;
+    margin: 1%;
+    border: 1px solid;
+}
