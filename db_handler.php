@@ -24,7 +24,6 @@
 			return $pdo;
 		} catch(PDOException $e) {
 			throw new Exception("Impossibile connettersi al database!");
-			return false;
 		}
 	}
 
