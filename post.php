@@ -3,6 +3,7 @@
 <head>
     <!--
         TODO: Inserimento commenti sotto al post
+        TODO: Tirare fuori il font
     -->
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -11,15 +12,14 @@
 	<?php
 		require 'db_handler.php';
 		$pdo = db_connect();
-		if(isset($_GET["id_post"])){
+		if(isset($_GET["id_post"])) {
 			$post = getPost($_GET["id_post"]);
-			if ($post == false) {
+			if($post == false) {
 				exit("ERRORE 404 - Pagina non trovata!");
 			}
-        }
-		else {
-		    exit("ERRORE 400 - Nessun post specificato!");
-        }
+		} else {
+			exit("ERRORE 400 - Nessun post specificato!");
+		}
 
 	?>
     <title><?php echo $post["titolo_post"] ?></title>
@@ -32,23 +32,24 @@
                 <span class="autore_post"><?php echo $post["nome_utente"] ?> -</span>
                 <span class="data_post"><?php echo $post["data_ora_post"] ?> -</span>
                 <span class="visualizzazioni">20 visualizzazioni -</span>
-                <a class="link" href="#commenti">Commenti (<?php echo(getNumeroCommenti($post["id_post"])); ?>)</a> <br/>
-					<?php
-						$immagini = getImmaginiPost($post["id_post"]);
-						if($immagini != false) {
-						    echo("<div class = \"slideshow\">");
-							foreach($immagini as $immagine) {
-								echo("<img class='immagine' style = 'display:none' src='" . $immagine["url"] . "'/>");
-							}
-                            echo("<a class=\"prev\">&#10094;</a>
+                <a class="link" href="#commenti">Commenti (<?php echo(getNumeroCommenti($post["id_post"])); ?>)</a>
+                <br/>
+				<?php
+					$immagini = getImmaginiPost($post["id_post"]);
+					if($immagini != false) {
+						echo("<div class = \"slideshow\">");
+						foreach($immagini as $immagine) {
+							echo("<img class='immagine' style = 'display:none' src='" . $immagine["url"] . "'/>");
+						}
+						echo("<a class=\"prev\">&#10094;</a>
                                     <a class=\"next\">&#10095;</a>
                                     <div style=\"text-align:center\">");
-                            for($i = 0; $i < count($immagini); $i++){
-                                echo("<span class='dot' id='$i'></span>");
-                            }
-                            echo("</div></div>");
+						for($i = 0; $i < count($immagini); $i++) {
+							echo("<span class='dot' id='$i'></span>");
 						}
-                        ?>
+						echo("</div></div>");
+					}
+				?>
                 <p class="testo"><?php echo $post["testo_post"] ?></p>
             </div>
             <!-- Id ancora per link ai commenti -->
@@ -58,10 +59,10 @@
                 </div>
 				<?php
 					$commenti = getCommenti($post["id_post"]);
-					if ($commenti == false) {
+					if($commenti == false) {
 						echo "<div><p>Nessun Commento sotto a questo post</p></div>";
 					} else {
-						foreach ($commenti as $commento) {
+						foreach($commenti as $commento) {
 							echo("
                             <div>
                                 <p class = \"commento\">
@@ -82,8 +83,8 @@
             </div>
 			<?php
 				$posts = getLatestPostSidebar($post["id_post"]);
-				foreach ($posts as $l_post) {
-					if ($post["id_post"] != $l_post["id_post"]) {
+				foreach($posts as $l_post) {
+					if($post["id_post"] != $l_post["id_post"]) {
 						echo("
                         <div class = 'post_recenti'>
                             <a class = 'link' href = 'http://localhost/progettoBDD/post.php?id_post=" . $l_post["id_post"] . "'>" . $l_post["titolo_post"] . "</a>
@@ -92,7 +93,8 @@
                         ");
 					}
 				}
-			$pdo = null; ?>
+				$pdo = null;
+            ?>
         </div>
     </div>
 </body>
