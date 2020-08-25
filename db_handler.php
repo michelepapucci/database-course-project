@@ -107,6 +107,22 @@
 		return false;
 	}
 
+	function getCategorie()
+	{
+		global $pdo;
+		if($pdo != false) {
+			try {
+				$stmt = $pdo->prepare("SELECT * FROM categoria");
+				$stmt->execute();
+				if($cat = $stmt->fetchAll()) {
+					return $cat;
+				}
+			} catch(PDOException $e) {
+				throw new Exception("Impossibile trovare categorie sul Database!");
+			}
+		}
+	}
+
 	function inserisciPost($titolo, $testo, $id_blog, $id_utente)
 	{
 		global $pdo;
@@ -136,7 +152,7 @@
 												INSERT INTO immagine(id_post, url)
 												VALUES (:id, :url)
 					");
-					$stmt ->execute(array(':id'=>$id_post, 'url'=>$immagine));
+					$stmt->execute(array(':id' => $id_post, 'url' => $immagine));
 				}
 				return true;
 			} catch(PDOException $e) {
