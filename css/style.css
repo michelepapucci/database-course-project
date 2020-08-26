@@ -25,6 +25,7 @@ p {
 .contenitore {
     display: flex;
     justify-content: center;
+    align-items: flex-start;
     width: 100%;
 }
 
@@ -41,11 +42,11 @@ p {
 
 .link {
     text-decoration: none;
-    color: darkred;
+    color: black;
 }
 
 .link:hover {
-    color: indianred;
+    text-decoration: underline;
 }
 
 .slideshow {
@@ -292,4 +293,45 @@ p {
     margin: 1%;
     border: 1px solid;
 }
+
+/* Pagina di visualizzazione del blog*/
+
+.contenitore_post {
+    border: 1.5px solid;
+    margin: 5% 5% 2% 5%;
+}
+
+.contenitore_blog{
+    margin: 10%;
+    padding-top: 5%;
+    border: 0.5px solid white;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.titolo_altro_blog {
+    font-size: 1.3vw ;
+    font-weight: bold;
+}
+
+.contenitore_post_altro_blog {
+    padding: 5%;
+    border-top: 1.5px solid;
+    width:80%;
+    margin: 2% auto 0% auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+.titolo_post_altro_blog {
+    font-size: 1.1vw;
+    font-weight: bold;
+}
+
+
+
 
