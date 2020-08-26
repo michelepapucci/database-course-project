@@ -320,7 +320,7 @@ p {
     padding: 5%;
     border-top: 1.5px solid;
     width:80%;
-    margin: 2% auto 0% auto;
+    margin: 2% auto 0 auto;
     display: flex;
     justify-content: center;
     flex-direction: column;

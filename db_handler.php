@@ -110,6 +110,7 @@
 	function getCategorie()
 	{
 		global $pdo;
+
 		if($pdo != false) {
 			try {
 				$stmt = $pdo->prepare("SELECT * FROM categoria");
@@ -120,6 +121,23 @@
 			} catch(PDOException $e) {
 				throw new Exception("Impossibile trovare categorie sul Database!");
 			}
+		}
+	}
+
+	function getTemiSimili($input, $id_cat)
+	{
+		global $pdo;
+
+		try {
+			$stmt = $pdo -> prepare("
+											SELECT *
+											FROM tema
+											WHERE id_cat = :cat
+											AND nome_tema LIKE :inp");
+			$stmt -> execute(array(':cat'=>$id_cat, ':inp'=>'%' . $input . '%'));
+			return $stmt->fetchAll();
+		} catch(PDOException $e) {
+			throw new Exception("Errore selezione temi");
 		}
 	}
 
@@ -170,7 +188,7 @@
 												INSERT INTO blog(titolo_blog, id_tema, id_utente, sfondo, font)
 												VALUES (:tit, :tema, :user, :sfo, :font)");
 				$stmt->execute(array(":tit" => $tit, ":tema" => $tema, ":user" => $user, ":sfo" => $sfondo, ":font" => $font));
-				return $pdo -> lastInsertId();
+				return $pdo->lastInsertId();
 			} catch(PDOException $e) {
 				throw new Exception("Impossibile creare nuovo blog!");
 			}
@@ -217,4 +235,5 @@
 		return false;
 	}
 
-	/* TODO: Aggiungere Try Catch */
+	/* TODO: Aggiungere Try Catch
+	 * TODO: Rimuovere check pdo == false*/

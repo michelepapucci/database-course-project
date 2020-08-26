@@ -25,6 +25,7 @@
             <title>Creazione blog</title>
             <link rel="stylesheet" type="text/css" href="css/style.css">
             <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+            <script src="js/tema.js"></script>
         </head>
         <body class="creazione">
             <form action="insert_blog.php" method="post">
@@ -63,10 +64,9 @@
                 </select><br>
                 <label for="tema" class="consegna_piccola">Scegli un tema da dare al tuo blog</label><br/>
                 <!-- TODO: guardare se stilabile -->
-                <input type="text" list = "temi" class="tema" id="tema" name="tema" maxlength="30" required><br/>
+                <input type="text" list = "temi" class="tema" id="tema" name="tema" maxlength="30" value = "s" required><br/>
                 <datalist id="temi">
-                    <option>prova</option>
-                    <option>prova2</option>
+
                 </datalist>
                 <input type="submit" value="Crea blog" class="bottone">
             </form>
