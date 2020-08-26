@@ -14,13 +14,14 @@
 			$this->autenticato = false;
 		}
 
-		public function nuovoAccount(string $nome, string $password, string $email, string $documento, int $cellulare)
+		public function nuovoAccount(string $nome, string $password, string $email, string $documento, string $cellulare)
 		{
 			global $pdo;
 
 			$nome = trim($nome);
 			$email = trim($email);
 			$documento = trim($documento);
+			$cellulare = trim($cellulare);
 
 			if(!$this->checkNome($nome)) {
 				throw new Exception("Nome utente non valido");
@@ -191,9 +192,9 @@
 			}
 		}
 
-		public function checkCellulare(int $cellulare): bool
+		public function checkCellulare(string $cellulare): bool
 		{
-			if(mb_strlen((string)$cellulare) == 10) {
+			if(mb_strlen($cellulare) == 10) {
 				return true;
 			} else {
 				return false;

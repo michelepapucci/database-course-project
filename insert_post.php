@@ -2,17 +2,19 @@
 	session_start();
 	require 'account.php';
 	require 'db_handler.php';
-
-	$pdo = db_connect();
-
 	$logged = false;
-	$account = new Account();
-	$logged = $account->loginDaSessione();
+
+	try {
+		$pdo = db_connect();
+		$account = new Account();
+		$logged = $account->loginDaSessione();
+	} catch(Exception $e){
+		die($e -> getMessage());
+	}
 
 	if(!$logged) {
 		$pdo = null;
-		echo("Immpossibile identificare autore del post.\n<a href = 'login.php'>Login In </a>");
-		exit();
+		die("Immpossibile identificare autore del post.<br/><a href = 'login.php'>Login In </a>");
 	} else {
 		$immagini = array();
 		for($i = 1; $i < 6; $i++) {
