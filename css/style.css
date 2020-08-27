@@ -139,7 +139,7 @@ p {
 
 /*pagina di creazione del post*/
 
-.creazione, .autenticazione {
+.creazione, .autenticazione, .home {
     background-color: white;
     text-align: center;
 }
