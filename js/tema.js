@@ -16,8 +16,8 @@ $(function(){
                     $("<option>" + temi_array[i] + "</option>").appendTo($("#temi"));
                 }
             },
-            error: function(){
-
+            error: function(jqXhr, textStatus, errorMessage){
+                console.log(textStatus + ": " + errorMessage);
             }
         });
     });
