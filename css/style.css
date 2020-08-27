@@ -296,7 +296,13 @@ p {
 
 /* Pagina di visualizzazione del blog*/
 
+.link_contenitore_post {
+    color: black;
+    text-decoration: none;
+}
+
 .contenitore_post {
+
     border: 1.5px solid;
     margin: 5% 5% 2% 5%;
 }

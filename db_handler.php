@@ -59,6 +59,58 @@
 		return false;
 	}
 
+	function getBlog($id_blog)
+	{
+		global $pdo;
+		try {
+			$stmt = $pdo->prepare("
+											SELECT titolo_blog, sfondo, font, nome_cat, nome_tema, nome_utente, categoria.id_cat
+											FROM blog, categoria, tema, utente_registrato
+											WHERE id_blog = :id
+											AND blog.id_utente = utente_registrato.id_utente
+											AND categoria.id_cat = tema.id_cat
+											AND tema.id_tema = blog.id_tema");
+			$stmt->execute(array(':id' => $id_blog));
+			if($blog = $stmt->fetch()) {
+				return $blog;
+			} else {
+				return false;
+			}
+		} catch(PDOException $e) {
+			throw new Exception("Impossibile trovare il blog richiesto");
+		}
+	}
+
+	function getPostDiBlog($id_blog)
+	{
+		global $pdo;
+		try {
+			$stmt = $pdo->prepare("SELECT * FROM post WHERE id_blog = :id ORDER BY data_ora_post DESC");
+			$stmt->execute(array(':id' => $id_blog));
+			$posts = $stmt->fetchAll();
+			return $posts;
+		} catch(PDOException $e) {
+			throw new Exception("Impossibile trovare i post del blog!");
+		}
+	}
+
+	function getBlogDiCategoria($id_cat) {
+		global $pdo;
+		try {
+			$stmt = $pdo->prepare("
+											SELECT titolo_blog, sfondo, font, nome_cat, nome_tema, nome_utente, id_blog
+											FROM blog, categoria, tema, utente_registrato
+											WHERE tema.id_cat = :id
+											AND blog.id_utente = utente_registrato.id_utente
+											AND categoria.id_cat = tema.id_cat
+											AND tema.id_tema = blog.id_tema");
+			$stmt->execute(array(':id' => $id_cat));
+			return $stmt->fetchAll();
+		} catch(PDOException $e) {
+			throw new Exception("Impossibile trovare i blog nella categoria!");
+		}
+	}
+
 	function getNumeroCommenti($post_id)
 	{
 		global $pdo;
@@ -129,12 +181,12 @@
 		global $pdo;
 
 		try {
-			$stmt = $pdo -> prepare("
+			$stmt = $pdo->prepare("
 											SELECT *
 											FROM tema
 											WHERE id_cat = :cat
 											AND nome_tema LIKE :inp");
-			$stmt -> execute(array(':cat'=>$id_cat, ':inp'=>'%' . $input . '%'));
+			$stmt->execute(array(':cat' => $id_cat, ':inp' => '%' . $input . '%'));
 			return $stmt->fetchAll();
 		} catch(PDOException $e) {
 			throw new Exception("Errore selezione temi");
@@ -148,12 +200,12 @@
 		if($pdo != false) {
 			try {
 				$stmt = $pdo->prepare("
-												INSERT INTO post(titolo_post, testo_post, data_ora_post, id_blog, id_utente)
-												VALUES(:tit, :tes, NOW(), :b_id, :u_id)");
+												INSERT INTO post(titolo_post, testo_post, data_ora_post, id_blog, id_utente, visibile)
+												VALUES(:tit, :tes, NOW(), :b_id, :u_id, 1)");
 				$stmt->execute(array(':tit' => $titolo, ':tes' => $testo, ':b_id' => $id_blog, ':u_id' => $id_utente));
 				return $pdo->lastInsertId();
 			} catch(PDOException $e) {
-				throw new Exception("Impossibile inserire il Post!");
+				throw new Exception("Impossibile inserire il Post!" . $e->getMessage());
 			}
 		}
 		return false;
