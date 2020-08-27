@@ -332,6 +332,28 @@ p {
     font-weight: bold;
 }
 
+/* NAVBAR */
 
+.navbar {
+    display: flex;;
+    justify-content: flex-start;
+    margin: 0;
+    background-color: lightblue;
+}
+
+.navbar_el {
+    list-style-type: none;
+    padding: 1%;
+    border: 1.5px solid white;
+}
+
+.navbar_el:hover {
+    background-color: aliceblue;
+}
+
+.navbar_bottone {
+    background-color: white;
+    border: 0.5px solid black;
+}
 
 
