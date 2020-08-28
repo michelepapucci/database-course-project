@@ -1,3 +1,8 @@
+<?php
+    session_start();
+
+    $_SESSION["last_page"] = $_SERVER['HTTP_REFERER'];
+?>
 <!DOCTYPE html>
 <html lang="it">
 <head>

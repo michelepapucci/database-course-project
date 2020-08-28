@@ -10,10 +10,6 @@
 @import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap'); /*PT Sans*/
 @import url('https://fonts.googleapis.com/css2?family=Lora&display=swap'); /*Lora*/
 
-body {
-    background-color: darkred;
-}
-
 p {
     padding: 0 5% 0 5%;
 }
@@ -135,6 +131,12 @@ p {
     padding: 1.5%;
     border-top: 2px solid;
     border-bottom: 2px solid;
+}
+
+#input-commento {
+    resize:none;
+    width: 50%;
+    margin-bottom: 2%;
 }
 
 /*pagina di creazione del post*/
