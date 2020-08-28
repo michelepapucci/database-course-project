@@ -3,7 +3,6 @@
 <head>
     <!--
         TODO: Inserimento commenti sotto al post
-        TODO: Tirare fuori il font
     -->
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="css/style.css">
