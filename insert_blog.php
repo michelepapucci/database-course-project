@@ -28,6 +28,7 @@
 				$sfondo = $_POST["colore_sfondo"];
 			}
 			$id_blog = inserisciNuovoBlog($_POST["titolo_blog"], $id, $account->getId(), $sfondo, $_POST["font"]);
+			header("location: blog.php?blog=".$id_blog);
 			echo("Nuovo blog creato con successo, puoi vederlo <a href='blog.php?blog=$id_blog'>qui</a>");
 		} catch(Exception $e) {
 			echo $e -> getMessage();

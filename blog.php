@@ -22,7 +22,6 @@
 <head>
     <!--
         TODO: Inserimento commenti sotto al post
-        TODO: Tirare fuori il font
     -->
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -30,7 +29,6 @@
     <script src="js/slideshow.js"></script>
     <title><?php echo $blog["titolo_blog"]; ?></title>
 </head>
-<!-- TODO: Gestire font e sfondo -->
 <body class="contenitore <?php echo $blog["font"]; ?>" <?php
     echo "style = '";
     if(filter_var($blog["sfondo"], FILTER_VALIDATE_URL)) {

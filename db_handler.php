@@ -32,7 +32,7 @@
 	{
 		global $pdo;
 		if($pdo != false) {
-			$stmt = $pdo->prepare("SELECT id_post, titolo_post, testo_post, data_ora_post, nome_utente
+			$stmt = $pdo->prepare("SELECT id_post, titolo_post, testo_post, data_ora_post, nome_utente, id_blog
 											FROM post, utente_registrato AS a
 											WHERE id_post = :id
 											AND post.id_utente = a.id_utente");
@@ -108,6 +108,17 @@
 			return $stmt->fetchAll();
 		} catch(PDOException $e) {
 			throw new Exception("Impossibile trovare i blog nella categoria!");
+		}
+	}
+
+	function getBlogUtente($id_ut) {
+		global $pdo;
+		try{
+			$stmt = $pdo->prepare("SELECT * from blog where id_utente = :id");
+			$stmt->execute(array(':id'=>$id_ut));
+			return $stmt->fetchAll();
+		}catch(PDOException $e){
+			throw new Exception("Impossibile trovare blog dell'utente");
 		}
 	}
 

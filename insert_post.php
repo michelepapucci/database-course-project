@@ -34,7 +34,7 @@
 			/*
 			 * TODO: Pagina decente di conferma inserimento post.
 			 */
-			echo "Inserimento avvenuto con successo.\nPost visibile <a href = 'post.php?id_post=". $id."'>qui</a>";
+			header("location: post.php?id_post=".$id);
 
 		} catch(Exception $e) {
 			die($e->getMessage());
