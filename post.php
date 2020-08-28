@@ -104,7 +104,7 @@
                             $_SESSION["post_attivo"] = $post["id_post"];
                             ?>
                             <textarea id = "input-commento"></textarea>
-                            <input type="button" value="Invia">
+                            <input type="button" id = "submit-commento" value="Invia">
                     <?php
                         } else {
                             ?>
