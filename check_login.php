@@ -9,13 +9,13 @@
 		$pdo = db_connect();
 		$account = new Account();
 		$logged = $account->login($_POST["email"], $_POST["password"]);
-		header("Location: index.php");
+
 	} catch(Exception $e) {
 		die($e->getMessage());
 	}
 
 	if($logged) {
-		header("registrazione.php");
+		header("Location: " . $_SESSION["last_page"]);
 	} else {
 		echo "Email o password errati";
 	}

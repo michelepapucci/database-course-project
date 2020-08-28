@@ -25,7 +25,8 @@
             </li>
         </ul>
         <ul class = "navbar_destra">
-            <li class = "navbar_el lista_destra drop"><a class = "link_standard">Area utente</a>
+            <li class = "navbar_el lista_destra drop">
+                <a class = "link_standard">Area utente</a>
                 <ul class = "tendina">
                     <li class = "tendina_el">1</li>
                     <li class = "tendina_el">2</li>
