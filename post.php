@@ -48,6 +48,7 @@
 		echo "background-color: " . $blog["sfondo"] . "'";
 	}
 ?>>
+    <?php include 'navbar.php' ?>
     <div class="contenitore">
         <div class="sinistra">
             <h1 class="titolo"><?php echo $post["titolo_post"] ?></h1>
@@ -103,16 +104,18 @@
                         if($logged) {
                             $_SESSION["post_attivo"] = $post["id_post"];
                             ?>
-                            <textarea id = "input-commento"></textarea>
-                            <input type="button" id = "submit-commento" value="Invia">
+                            <div class="contenitore_commenti">
+                                <textarea id = "input-commento" placeholder="Scrivi un commento al post" rows="2" maxlength="1000"></textarea>
+                                <input type="button" class = "bottone bottone_commento" id = "submit-commento" value="Invia">
+                            </div>
                     <?php
                         } else {
                             ?>
-                            Per commentare <a href = "registrazione.php">Registrati</a>, se sei già registrato esegui il <a href = "login.php">Login</a>
+                            <p>Per commentare <a class = "link" href = "registrazione.php">registrati qui</a>,
+                                se sei già registrato <a class = "link" href = "login.php">accedi qui</a>.</p>
                     <?php
                         }
                     ?>
-
                 </div>
             </div>
         </div>
@@ -138,3 +141,5 @@
     </div>
 </body>
 </html>
+
+<!-- TODO: se non esistono altri post da blog della stessa categoria, scriverlo sul lato destro  -->
