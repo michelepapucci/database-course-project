@@ -69,9 +69,6 @@
                 <input type="submit" value="Crea blog" class="bottone">
             </form>
         </body>
-        <!-- TODO: Visualizzare numero di caratteri rimanenti durante scrittura post -->
-        <!-- TODO: Gestire l'inserimento del font -->
-        <!-- TODO: Fare la pagina javascript che gestisce l'inserimento del tema -->
         </html>
 		<?php
 	}

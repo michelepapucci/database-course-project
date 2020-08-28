@@ -8,7 +8,7 @@
 		echo $e->getMessage();
 	}
 
-	$_SESSION["blog_attivo"] = $_GET["blog"];
+
 
 	$logged = false;
 	$account = new Account();
@@ -18,8 +18,20 @@
 		$pdo = null;
 		echo("Per creare un post è necessario autenticarsi!\n<a href = 'login.php'>Login In </a>");
 		exit();
-	} else {
-		?>
+	}
+
+	$ut_blogs = getBlogUtente($account->getId());
+    foreach($ut_blogs as $b) {
+        if($b["id_blog"] == $_GET["blog"]) {
+			$_SESSION["blog_attivo"] = $_GET["blog"];
+			break;
+		}
+        $_SESSION["blog_attivo"] = NULL;
+	}
+	if($_SESSION["blog_attivo"] == NULL) {
+		die("Non puoi pubblicare un post su questo blog!");
+	}
+	?>
         <!DOCTYPE html>
         <html lang="it">
         <head>
@@ -47,6 +59,5 @@
         </body>
         </html>
 		<?php
-	}
-	$pdo = null;
-?>
+            $pdo = null;
+        ?>

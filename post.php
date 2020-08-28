@@ -15,16 +15,26 @@
 		if(isset($_GET["id_post"])) {
 			$post = getPost($_GET["id_post"]);
 			if($post == false) {
-				exit("ERRORE 404 - Pagina non trovata!");
+				die("ERRORE 404 - Pagina non trovata!");
 			}
+			$blog = getBlog($post["id_blog"]);
 		} else {
-			exit("ERRORE 400 - Nessun post specificato!");
+			die("ERRORE 400 - Nessun post specificato!");
 		}
 
 	?>
     <title><?php echo $post["titolo_post"] ?></title>
 </head>
-<body>
+<body class = "<?php echo $blog["font"]; ?>"
+    <?php
+	echo "style = '";
+	if(filter_var($blog["sfondo"], FILTER_VALIDATE_URL)) {
+		echo "background-image: url(\"" . $blog["sfondo"] . "\")'";
+	}
+	if($blog["sfondo"]) {
+		echo "background-color: " . $blog["sfondo"] . "'";
+	}
+?>>
     <div class="contenitore">
         <div class="sinistra">
             <h1 class="titolo"><?php echo $post["titolo_post"] ?></h1>

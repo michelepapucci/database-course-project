@@ -237,5 +237,4 @@
 	/*
 	 * TODO: Delete e Edit Account
 	 * TODO: commentare
-	 * TODO: cellulare trasformarlo in stringa.
 	 */
