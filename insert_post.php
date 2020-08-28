@@ -31,9 +31,7 @@
 			if($id != false && count($immagini) != 0){
 				inserisciImmaginiPost($id, $immagini);
 			}
-			/*
-			 * TODO: Pagina decente di conferma inserimento post.
-			 */
+
 			header("location: post.php?id_post=".$id);
 
 		} catch(Exception $e) {
@@ -42,7 +40,4 @@
 	}
 
 	$pdo = null;
-	/*
-	 * TODO: Controllare che l'utente loggato possa scrivere un post sul blog in questione.
-	 */
 
