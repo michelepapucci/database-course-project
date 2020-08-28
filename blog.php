@@ -31,7 +31,15 @@
     <title><?php echo $blog["titolo_blog"]; ?></title>
 </head>
 <!-- TODO: Gestire font e sfondo -->
-<body class="contenitore" <?php echo "style = 'background-color: " . $blog["sfondo"] . "'" ?>>
+<body class="contenitore <?php echo $blog["font"]; ?>" <?php
+    echo "style = '";
+    if(filter_var($blog["sfondo"], FILTER_VALIDATE_URL)) {
+        echo "background-image: url(\"" . $blog["sfondo"] . "\")'";
+    }
+    if($blog["sfondo"]) {
+		echo "background-color: " . $blog["sfondo"] . "'";
+    }
+?>>
     <div class="sinistra">
         <h1 class="titolo"><?php echo $blog["titolo_blog"]; ?></h1>
         <span class="autore_post"><?php echo $blog["nome_utente"]; ?> -</span>
