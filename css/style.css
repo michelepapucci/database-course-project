@@ -145,7 +145,7 @@ p {
 }
 
 .consegna {
-    font-size: 1.9vw;
+    font-size: 2em;
     font-weight: 500;
     margin-top: 3%;
 }
@@ -216,14 +216,14 @@ p {
 .box {
     display: flex;
     flex-direction: column;
-    border: 1.9px solid;
+    border: 1.9px solid lightblue;
     width: 30%;
     margin: 2% auto 0 auto;
     padding: 2%;
 }
 
 .consegna_piccola {
-    font-size: 1.1vw;
+    font-size: 1.05em;
     font-weight: 500;
 }
 
@@ -296,7 +296,7 @@ p {
 
 /* Pagina di visualizzazione del blog*/
 
-.link_contenitore_post {
+.link_contenitore_post, .link_standard {
     color: black;
     text-decoration: none;
 }
@@ -340,26 +340,82 @@ p {
 
 /* NAVBAR */
 
-.navbar {
-    display: flex;;
+.contenitore_navbar {
+    display: flex;
+}
+
+.navbar_sinistra {
+    display: flex;
     justify-content: flex-start;
     margin: 0;
+    padding: 0;
     background-color: lightblue;
+    width: 70%;
+}
+
+.navbar_destra {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0%;
+    padding: 0;
+    background-color: lightblue;
+    width: 30%;
 }
 
 .navbar_el {
     list-style-type: none;
     padding: 1%;
-    border: 1.5px solid white;
+}
+
+.lista_sinistra {
+    border-right: 4px solid white;
+}
+
+.lista_destra {
+    border-left: 4px solid white;
 }
 
 .navbar_el:hover {
     background-color: aliceblue;
 }
 
+.navbar_ricerca {
+    border: 1px solid;
+}
 .navbar_bottone {
-    background-color: white;
     border: 0.5px solid black;
 }
 
+.ereditato {
+    background-color: inherit;
+}
 
+.consegna_media {
+    font-size: 1.4em;
+}
+
+.contenitore_box {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+.box_multipli {
+    border: 2px solid lightblue;
+    padding-bottom: 2%;
+    padding-top: 1%;
+    flex-grow: 1;
+    margin: 2%
+}
+
+.contenitore_verticale {
+    flex-direction: column;
+}
+
+.tendina {
+    display:none;
+}
+
+.drop:hover > .tendina li {
+    display: block;
+    flex: 1;
+}
