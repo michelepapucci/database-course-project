@@ -340,17 +340,39 @@ p {
 
 /* NAVBAR */
 
-.navbar {
-    display: flex;;
+.contenitore_navbar {
+    display: flex;
+}
+
+.navbar_sinistra {
+    display: flex;
     justify-content: flex-start;
     margin: 0;
+    padding: 0;
     background-color: lightblue;
+    width: 70%;
+}
+
+.navbar_destra {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0%;
+    padding: 0;
+    background-color: lightblue;
+    width: 30%;
 }
 
 .navbar_el {
     list-style-type: none;
     padding: 1%;
-    border: 1.5px solid white;
+}
+
+.lista_sinistra {
+    border-right: 4px solid white;
+}
+
+.lista_destra {
+    border-left: 4px solid white;
 }
 
 .navbar_el:hover {
@@ -387,4 +409,13 @@ p {
 
 .contenitore_verticale {
     flex-direction: column;
+}
+
+.tendina {
+    display:none;
+}
+
+.drop:hover > .tendina li {
+    display: block;
+    flex: 1;
 }
