@@ -8,8 +8,6 @@
 		echo $e->getMessage();
 	}
 
-
-
 	$logged = false;
 	$account = new Account();
 	$logged = $account->loginDaSessione();
@@ -20,7 +18,6 @@
 		exit();
 	}
 
-	//TODO: gestire co-autori.
 	$ut_blogs = getBlogUtente($account->getId());
     foreach($ut_blogs as $b) {
         if($b["id_blog"] == $_GET["blog"]) {

@@ -1,21 +1,21 @@
 <?php
-    session_start();
+	session_start();
 	require 'db_handler.php';
 	require 'account.php';
-	$pdo = db_connect();
-	if(isset($_GET["id_post"])) {
-		$post = getPost($_GET["id_post"]);
-		if($post == false) {
-			die("ERRORE 404 - Pagina non trovata!");
-		}
-		$blog = getBlog($post["id_blog"]);
-	} else {
-		die("ERRORE 400 - Nessun post specificato!");
-	}
 
-	try{
+	try {
+		$pdo = db_connect();
+		if(isset($_GET["id_post"])) {
+			$post = getPost($_GET["id_post"]);
+			if($post == false) {
+				die("ERRORE 404 - Pagina non trovata!");
+			}
+			$blog = getBlog($post["id_blog"]);
+		} else {
+			die("ERRORE 400 - Nessun post specificato!");
+		}
 		$account = new Account();
-		$logged = $account -> loginDaSessione();
+		$logged = $account->loginDaSessione();
 	} catch(Exception $e) {
 		die($e->getMessage());
 	}
@@ -24,30 +24,27 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <!--
-        TODO: Inserimento commenti sotto al post
-    -->
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="js/slideshow.js"></script>
-    <?php
-        if($logged) {
-            echo '<script src="js/inserisci-commento.js"></script>';
-        }
-    ?>
+	<?php
+		if($logged) {
+			echo '<script src="js/inserisci-commento.js"></script>';
+		}
+	?>
     <title><?php echo $post["titolo_post"] ?></title>
 </head>
-<body class = "<?php echo $blog["font"]; ?>"
-    <?php
-	echo "style = '";
-	if(filter_var($blog["sfondo"], FILTER_VALIDATE_URL)) {
-		echo "background-image: url(\"" . $blog["sfondo"] . "\")'";
-	}
-	if($blog["sfondo"]) {
-		echo "background-color: " . $blog["sfondo"] . "'";
-	}
-?>>
+<body class="<?php echo $blog["font"]; ?>"
+	<?php
+		echo "style = '";
+		if(filter_var($blog["sfondo"], FILTER_VALIDATE_URL)) {
+			echo "background-image: url(\"" . $blog["sfondo"] . "\")'";
+		}
+		if($blog["sfondo"]) {
+			echo "background-color: " . $blog["sfondo"] . "'";
+		}
+	?>>
     <div class="contenitore">
         <div class="sinistra">
             <h1 class="titolo"><?php echo $post["titolo_post"] ?></h1>
@@ -99,19 +96,20 @@
 					}
 				?>
                 <div>
-                    <?php
-                        if($logged) {
-                            $_SESSION["post_attivo"] = $post["id_post"];
-                            ?>
-                            <textarea id = "input-commento"></textarea>
-                            <input type="button" id = "submit-commento" value="Invia">
-                    <?php
-                        } else {
-                            ?>
-                            Per commentare <a href = "registrazione.php">Registrati</a>, se sei già registrato esegui il <a href = "login.php">Login</a>
-                    <?php
-                        }
-                    ?>
+					<?php
+						if($logged) {
+							$_SESSION["post_attivo"] = $post["id_post"];
+							?>
+                            <textarea id="input-commento"></textarea>
+                            <input type="button" id="submit-commento" value="Invia">
+							<?php
+						} else {
+							?>
+                            Per commentare <a href="registrazione.php">Registrati</a>, se sei già registrato esegui il
+                            <a href="login.php">Login</a>
+							<?php
+						}
+					?>
 
                 </div>
             </div>
@@ -133,7 +131,7 @@
 					}
 				}
 				$pdo = null;
-            ?>
+			?>
         </div>
     </div>
 </body>
