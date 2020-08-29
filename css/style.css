@@ -407,6 +407,11 @@ p {
     background-color: aliceblue;
 }
 
+#del-utente {
+    color: red;
+    cursor: pointer;
+}
+
 .navbar_sotto {
     margin-top: 0.5%;
     display: flex;

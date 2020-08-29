@@ -251,6 +251,11 @@
 		{
 			return $this->id;
 		}
+
+		public function getNome()
+		{
+			return $this->nome;
+		}
 	}
 
 	/*

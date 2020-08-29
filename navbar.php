@@ -1,5 +1,6 @@
 <?php
 	global $logged;
+	global $account;
 ?>
 <div class="contenitore_navbar">
     <ul class="navbar_sinistra">
@@ -7,18 +8,32 @@
         <li class="navbar_el lista_sinistra"><a class="link_standard" href="about.php">About</a></li>
     </ul>
     <ul class = "navbar_destra">
-        <li class = "navbar_el lista_destra"><span>Ciao, nome utente</span></li>
+        <?php
+            if($logged) {
+                echo "<li class = 'navbar_el lista_destra'><span>Ciao, " . $account->getNome() . "</span></li>";
+            }
+        ?>
+
         <li class = "navbar_el lista_destra dropdown"><a class = "link_standard area_utente">Area utente</a>
             <div class="drop_el">
-                <a href="#">Link 1</a>
-                <a href="#">Link 2</a>
-                <a href="#">Link 3</a>
+                <?php
+                    if($logged) {
+                        ?>
+                        <a href="creazione_blog.php">Crea un Nuovo Blog</a>
+                        <a href="logout.php">Logout</a>
+                        <a id="del-utente">Elimina il tuo utente</a>
+                <?php
+                    } else {
+						echo '<a href="login.php">Accedi</a>';
+                    }
+                ?>
+
             </div>
         </li>
     </ul>
 </div>
 <div class = "navbar_sotto">
-    <form class = "navbar_form" action="/action_page.php">
+    <form class = "navbar_form">
         <label class = "inline" for="ricerca">Cerca un blog per
             <select class = "navbar_select" name="opzioni" id="opzioni">
                 <option value="nome" id = "nome">nome</option>

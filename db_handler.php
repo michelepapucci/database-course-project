@@ -177,6 +177,27 @@
 		return false;
 	}
 
+	function getLatestPostIndex()
+	{
+		global $pdo;
+
+		try {
+			$stmt = $pdo -> prepare ("
+											SELECT titolo_post, testo_post, nome_utente, titolo_blog, nome_cat, nome_tema
+											FROM post, blog, categoria, tema, utente_registrato
+											WHERE post.id_utente = utente_registrato.id_utente
+											AND blog.id_blog = post.id_blog
+											AND tema.id_cat = categoria.id_cat
+											AND tema.id_tema = blog.id_tema
+											ORDER BY post.data_ora_post DESC LIMIT 10");
+			$stmt -> execute();
+			return $stmt -> fetchAll();
+		} catch(PDOException $e) {
+			throw new Exception("Impossibile recuperare ultimi post dal Database!");
+		}
+
+	}
+
 	function getCategorie()
 	{
 		global $pdo;

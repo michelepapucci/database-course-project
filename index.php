@@ -21,9 +21,9 @@
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 		<?php
 			if($logged) {
-                echo "<script src='js/del_utente.js'></script>";
+				echo "<script src='js/del_utente.js'></script>";
 			}
-			?>
+		?>
     </head>
     <body class="home">
 		<?php include 'navbar.php' ?>
@@ -49,15 +49,35 @@
                 <a class="consegna_media link" href="post.php">Visita un blog a caso!</a>
             </div>
         </div>
-        <p class="consegna_media">Sbircia gli ultimi post pubblicati sul sito</p>
-        <div class="contenitore_box contenitore_verticale">
-            <div class="box_multipli">
-                <a class="link consegna_media" href="post.php">Titolo<a>
-                        <p class="consegna_piccola">Testo testo testo testo testo</p>
-                        <a class="link">Da Titolo
-                            Blog</a><span> - Di Autore Blog - </span><span>Categoria - </span><span>Tema</span>
-            </div>
-        </div>
+		<?php
+			try {
+				$latest_post = getLatestPostIndex();
+			} catch(Exception $e) {
+				die($e->getMessage());
+			}
+			if(is_array($latest_post) && count($latest_post) > 0) {
+				?>
+                <p class="consegna_media">Sbircia gli ultimi post pubblicati sul sito</p>
+                <div class="contenitore_box contenitore_verticale">
+					<?php
+						foreach($latest_post as $p) {
+							echo '
+                                <div class="box_multipli">
+                                    <a class="link consegna_media" href="post.php">' . $p["titolo_post"] . '</a>
+                                    <p class="consegna_piccola">' . substr($p["testo_post"], 0, 200) . '...</p>
+                                    <a class="link">Da "' . $p["titolo_blog"] . '"</a>
+                                    <span> - di ' . $p["nome_utente"] . ' - </span>
+                                    <span> da ' . $p["nome_tema"] . ' - </span>
+                                    <span>  in ' . $p["nome_cat"] . '</span>
+                                </div>';
+						}
+					?>
+                </div>
+				<?php
+			} else {
+				echo '<p class="consegna_media">Oh no! Sembra che nessuno abbia ancora scritto un post!</p>';
+			}
+		?>
     </body>
     </html>
 
