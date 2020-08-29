@@ -43,20 +43,23 @@
             <script src="js/img.js"></script>
             <script src="js/creazione_post.js"></script>
         </head>
-        <body class="creazione">
-            <form action="insert_post.php" method="post">
-                <label for="titolo_post" class="consegna">Scrivi qui il tuo titolo</label><br/>
-                <input type="text" id="titolo_post" name="titolo_post" maxlength="100" required><br/>
-                <div class="appendino">
-                    <input type="button" value="Carica qui le tue foto" class="bottone bottone_foto" id="bottone_foto"><br/>
-                </div>
-                <label for="testo_post" class="consegna">Scrivi qui il tuo post</label><br/>
-                <div class = "post_area">
-                    <textarea id="testo_post" name="testo_post" maxlength="10000" rows="20"></textarea>
-                    <a id="caratteri_rim">0</a><br/>
-                </div>
-                <input type="submit" value="Pubblica" class="bottone">
-            </form>
+        <body>
+        <?php include 'navbar.php' ?>
+            <div class="creazione">
+                <form class = "form" action="insert_post.php" method="post">
+                    <label for="titolo_post" class="consegna">Scrivi qui il tuo titolo</label><br/>
+                    <input type="text" id="titolo_post" name="titolo_post" maxlength="100" required><br/>
+                    <div class="appendino">
+                        <input type="button" value="Carica qui le tue foto" class="bottone bottone_foto" id="bottone_foto"><br/>
+                    </div>
+                    <label for="testo_post" class="consegna">Scrivi qui il tuo post</label><br/>
+                    <div class = "post_area">
+                        <textarea id="testo_post" name="testo_post" maxlength="10000" rows="20"></textarea>
+                        <a id="caratteri_rim">0</a><br/>
+                    </div>
+                    <input type="submit" value="Pubblica" class="bottone">
+                </form>
+            </div>
         </body>
         </html>
 		<?php

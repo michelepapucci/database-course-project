@@ -7,6 +7,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 <body class="autenticazione">
+    <?php include 'navbar.php' ?>
     <p class="consegna">Registrati</p>
     <div class="box">
         <form id="form" action="insert_nuovo_utente.php" method="post">

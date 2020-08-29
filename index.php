@@ -7,36 +7,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 <body class = "home">
-    <div class = "contenitore_navbar">
-        <ul class = "navbar_sinistra">
-            <li class = "navbar_el lista_sinistra"><a class = "link_standard" href="index.php">Home</a></li>
-            <li class = "navbar_el lista_sinistra"><a class = "link_standard" href="news.asp">News</a></li>
-            <li class = "navbar_el lista_sinistra"><a class = "link_standard" href="contact.asp">Contact</a></li>
-            <li class = "navbar_el lista_sinistra"><a class = "link_standard" href="about.asp">About</a></li>
-        </ul>
-        <div class = "navbar_centro">
-            <form class = "navbar_form" action="/action_page.php">
-                <label class = "inline" for="ricerca">Cerca un blog per
-                    <select class = "ereditato" name="opzioni" id="opzioni">
-                        <option value="nome" id = "nome">nome</option>
-                        <option value="categoria" id = "categoria">categoria</option>
-                        <option value="tema" id = "tema">tema</option>
-                    </select> : </label>
-                <input type="search" class = "navbar_ricerca ereditato" id="ricerca" name="ricerca">
-                <input type="submit" class = "navbar_bottone ereditato" value = "Cerca">
-            </form>
-        </div>
-        <ul class = "navbar_destra dropdown">
-            <li class = "navbar_el lista_destra drop_campo"><a class = "link_standard">Area utente</a>
-                    <div class="drop_el">
-                        <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
-                    </div>
-                </div>
-            </li>
-        </ul>
-    </div>
+    <?php include 'navbar.php' ?>
     <p class="consegna">Benvenuto su Bloggolo!</p>
     <p class = "consegna_piccola">Bloggolo è una piattaforma che ti permette di creare gratuitamente il tuo blog personale, e di condividere
         la tua conoscenza con il mondo! <br/> Il tuo blog verrà inserito in una categoria generale, e per specificare
