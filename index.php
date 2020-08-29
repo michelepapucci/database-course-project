@@ -19,6 +19,11 @@
         <title>Home</title>
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+		<?php
+			if($logged) {
+                echo "<script src='js/del_utente.js'></script>";
+			}
+			?>
     </head>
     <body class="home">
 		<?php include 'navbar.php' ?>

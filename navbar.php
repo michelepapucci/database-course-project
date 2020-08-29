@@ -1,5 +1,5 @@
 <?php
-    global $logged;
+	global $logged;
 ?>
 <div class="contenitore_navbar">
     <ul class="navbar_sinistra">
@@ -20,17 +20,17 @@
     </div>
     <ul class="navbar_destra dropdown">
         <li class="navbar_el lista_destra drop_campo"><a class="link_standard area_utente">Area utente</a>
-            <?php
-                if($logged){
-                    ?>
+			<?php
+				if($logged) {
+					?>
                     <div class="drop_el">
                         <a href="logout.php">Logout</a>
                         <a href="creazione_blog.php">Crea nuovo Blog</a>
-                        <a href="#">Link 3</a>
+                        <a id="del-utente">Elimina Account</a>
                     </div>
-            <?php
-                }
-            ?>
+					<?php
+				}
+			?>
         </li>
     </ul>
 </div>
