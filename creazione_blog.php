@@ -22,7 +22,7 @@
         <html lang="it">
         <head>
             <meta charset="UTF-8">
-            <title><C></C>reazione blog</title>
+            <title>Creazione blog</title>
             <link rel="stylesheet" type="text/css" href="css/style.css">
             <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
             <script src="js/tema.js"></script>

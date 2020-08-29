@@ -1,3 +1,17 @@
+<?php
+session_start();
+require 'db_handler.php';
+require 'account.php';
+
+$logged = false;
+$account = new Account();
+try {
+	$pdo = db_connect();
+	$logged = $account->loginDaSessione();
+} catch(Exception $e) {
+	die($e->getMessage());
+}
+?>
 <!DOCTYPE html>
 <html lang="it">
 <head>

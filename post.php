@@ -2,7 +2,7 @@
 	session_start();
 	require 'db_handler.php';
 	require 'account.php';
-
+    $logged = false;
 	try {
 		$pdo = db_connect();
 		if(isset($_GET["id_post"])) {
