@@ -94,7 +94,8 @@
 		}
 	}
 
-	function getBlogDiCategoria($id_cat) {
+	function getBlogDiCategoria($id_cat)
+	{
 		global $pdo;
 		try {
 			$stmt = $pdo->prepare("
@@ -111,13 +112,18 @@
 		}
 	}
 
-	function getBlogUtente($id_ut) {
+	/* TODO: aggiungere i blog di cui l'utente è coautore */
+	function getBlogUtente($id_ut)
+	{
 		global $pdo;
-		try{
-			$stmt = $pdo->prepare("SELECT * from blog where id_utente = :id");
-			$stmt->execute(array(':id'=>$id_ut));
+		try {
+			$stmt = $pdo->prepare("SELECT * 
+											FROM blog
+											WHERE blog.id_utente = :id
+											");
+			$stmt->execute(array(':id' => $id_ut));
 			return $stmt->fetchAll();
-		}catch(PDOException $e){
+		} catch(PDOException $e) {
 			throw new Exception("Impossibile trovare blog dell'utente");
 		}
 	}
@@ -142,7 +148,8 @@
 									SELECT data_ora_comm, testo_comm, nome_utente
 									FROM commento, utente_registrato AS a
 									WHERE id_post = :id
-									AND commento.id_utente = a.id_utente ");
+									AND commento.id_utente = a.id_utente
+									ORDER BY data_ora_comm DESC");
 			$stmt->bindParam(':id', $post_id);
 			$stmt->execute();
 			if($commenti = $stmt->fetchAll()) {
