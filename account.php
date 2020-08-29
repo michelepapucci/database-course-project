@@ -1,4 +1,5 @@
 <?php
+
 	class Account
 	{
 		private $id;
@@ -119,8 +120,7 @@
 		{
 			global $pdo;
 
-			if(is_null($this->id))
-			{
+			if(is_null($this->id)) {
 				return;
 			}
 
@@ -134,9 +134,9 @@
 					$stmt = $pdo->prepare("
 													DELETE FROM sessione_utente
 													WHERE id_sessione = :s_id");
-					$stmt ->execute(array(':s_id'=>session_id()));
-				} catch(PDOException $e){
-						throw new Exception("Errore Eliminazione sessione dal Database");
+					$stmt->execute(array(':s_id' => session_id()));
+				} catch(PDOException $e) {
+					throw new Exception("Errore Eliminazione sessione dal Database");
 				}
 			}
 		}
@@ -154,6 +154,24 @@
 				} catch(PDOException $e) {
 					throw new Exception("Registrazione sessione fallita");
 				}
+			}
+		}
+
+		public function modificaAccount(int $id, string $nome, string $password)
+		{
+			global $pdo;
+
+		}
+
+		public function cancellaAccount()
+		{
+			global $pdo;
+			try {
+				$stmt = $pdo->prepare("DELETE FROM utente_registrato WHERE id_utente = :id");
+				$stmt->execute(array(':id' => $this->getId()));
+				return true;
+			} catch(PDOException $e) {
+				throw new Exception ("Errore durante eliminazione dell'account.php" . $e->getMessage());
 			}
 		}
 
@@ -229,12 +247,13 @@
 			return $res["id_utente"];
 		}
 
-		public function getId(){
+		public function getId()
+		{
 			return $this->id;
 		}
 	}
 
 	/*
-	 * TODO: Delete e Edit Account
+	 * TODO: Edit Account
 	 * TODO: commentare
 	 */
