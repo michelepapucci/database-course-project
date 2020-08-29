@@ -12,7 +12,8 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 <body class="autenticazione">
-    <p class="consegna">Accedi</p><br/>
+    <?php include 'navbar.php' ?>
+    <p class="consegna">Accedi</p>
     <div class="box">
         <form action="check_login.php" method="post">
             <label for="email" class="consegna_piccola">E-mail</label><br/>
@@ -23,7 +24,7 @@
         </form>
     </div>
     <br/>
-    <span class="consegna_piccola">Non hai ancora un account? <br/> Registrati </span><a class="link consegna_piccola"
-                                                                                         href="registrazione.php">qui</a>
+    <span class="consegna_piccola">Non hai ancora un account? <br/></span><a class="link consegna_piccola"
+                                                                             href="registrazione.php">Registrati qui</a>
 </body>
 </html>

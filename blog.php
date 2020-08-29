@@ -29,7 +29,7 @@
     <script src="js/slideshow.js"></script>
     <title><?php echo $blog["titolo_blog"]; ?></title>
 </head>
-<body class="contenitore <?php echo $blog["font"]; ?>" <?php
+<body class=" <?php echo $blog["font"]; ?>" <?php
     echo "style = '";
     if(filter_var($blog["sfondo"], FILTER_VALIDATE_URL)) {
         echo "background-image: url(\"" . $blog["sfondo"] . "\")'";
@@ -38,48 +38,50 @@
 		echo "background-color: " . $blog["sfondo"] . "'";
     }
 ?>>
-    <div class="sinistra">
-        <h1 class="titolo"><?php echo $blog["titolo_blog"]; ?></h1>
-        <span class="autore_post"><?php echo $blog["nome_utente"]; ?> -</span>
-        <span class="visualizzazioni"><?php echo $blog["nome_tema"] . " - " . $blog["nome_cat"]; ?> -</span>
-        <span class="numero_post">
+    <?php include 'navbar.php' ?>
+    <div class = "contenitore">
+        <div class="sinistra">
+            <h1 class="titolo"><?php echo $blog["titolo_blog"]; ?></h1>
+            <span class="autore_post"><?php echo $blog["nome_utente"]; ?> -</span>
+            <span class="visualizzazioni"><?php echo $blog["nome_tema"] . " - " . $blog["nome_cat"]; ?> -</span>
+            <span class="numero_post">
             <?php
-				if(is_array($posts)) {
-					echo count($posts);
-				}
-			?> post</span><br/>
-        <div>
-			<?php
-				foreach($posts as $post) {
-					echo("
+            if(is_array($posts)) {
+                echo count($posts);
+            }
+            ?> post</span><br/>
+            <div>
+                <?php
+                foreach($posts as $post) {
+                    echo("
                     <a class = 'link_contenitore_post' href = 'post.php?id_post=" . $post["id_post"] . "'>
                         <div class='contenitore_post'>
                             <h3>" . $post["titolo_post"] . "</h3>
                             <p>" . substr($post["testo_post"], 0, 100) . "...</p>
                         </div>
                     </a>");
-				}
-			?>
-            <!-- Quando si clicca sul div del post si va alla pagina di visualizzazione del post -->
+                }
+                ?>
+                <!-- Quando si clicca sul div del post si va alla pagina di visualizzazione del post -->
+            </div>
         </div>
-    </div>
-    <div class="destra">
-        <div class="div_titoletto">
-            <h3 class="titoletto">Altri Blog in <?php echo $blog["nome_cat"] ?></h3>
-        </div>
-		<?php
-			try {
-				$cat_blogs = getBlogDiCategoria($blog["id_cat"]);
-			} catch(Exception $e) {
-				die($e->getMessage());
-			}
+        <div class="destra">
+            <div class="div_titoletto">
+                <h3 class="titoletto">Altri Blog in <?php echo $blog["nome_cat"] ?></h3>
+            </div>
+            <?php
+            try {
+                $cat_blogs = getBlogDiCategoria($blog["id_cat"]);
+            } catch(Exception $e) {
+                die($e->getMessage());
+            }
 
-			foreach($cat_blogs as $c) {
-				try {
-					if($c["id_blog"] != $_GET["blog"]) {
-						$c_post = getPostDiBlog($c["id_blog"]);
-						if(is_array($c_post) && count($c_post) > 0) {
-							echo("
+            foreach($cat_blogs as $c) {
+                try {
+                    if($c["id_blog"] != $_GET["blog"]) {
+                        $c_post = getPostDiBlog($c["id_blog"]);
+                        if(is_array($c_post) && count($c_post) > 0) {
+                            echo("
                                 <div class='contenitore_blog div_titoletto'>
                                     <a class='link titolo_altro_blog'>" . $c["titolo_blog"] . "</a>
                                     <div class='contenitore_post_altro_blog'>
@@ -88,13 +90,14 @@
                                     </div>
                                 </div>
                             ");
-						}
-					}
-				} catch(Exception $e) {
-					die($e->getMessage());
-				}
-			}
-		?>
+                        }
+                    }
+                } catch(Exception $e) {
+                    die($e->getMessage());
+                }
+            }
+            ?>
+        </div>
     </div>
 </body>
 </html>

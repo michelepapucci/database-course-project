@@ -110,7 +110,6 @@ p {
     width: 25%;
     text-align: center;
     flex-direction: column;
-    border-left: 1.8px solid;
     justify-content: center;
     margin: 2% 0 2% 0;
 }
@@ -133,9 +132,20 @@ p {
     border-bottom: 2px solid;
 }
 
+.contenitore_commenti {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 #input-commento {
     resize:none;
-    width: 50%;
+    width: 70%;
+    margin-bottom: 2%;
+    margin-right: 2%;
+    padding: 1%;
+}
+
+.bottone_commento {
     margin-bottom: 2%;
 }
 
@@ -146,10 +156,14 @@ p {
     text-align: center;
 }
 
+.form {
+    margin-top: 1%;
+}
+
 .consegna {
     font-size: 2em;
     font-weight: 500;
-    margin-top: 3%;
+    margin: 1.5% 1% 1% 1%;
 }
 
 #titolo_post, #titolo_blog {
@@ -343,7 +357,8 @@ p {
 /* NAVBAR */
 
 .contenitore_navbar {
-    display: flex !important;
+    display: flex;
+    border: solid white;
     justify-content: space-between;
     text-align: center;
     background-color: lightblue;
@@ -351,6 +366,7 @@ p {
 
 .navbar_sinistra {
     display: flex;
+    flex-grow: 2;
     margin: 0;
     padding: 0;
     background-color: lightblue;
@@ -358,6 +374,7 @@ p {
 
 .navbar_centro {
     display: flex;
+    flex-grow: 1;
     align-items: center;
     margin: 0;
     padding: 0;
@@ -367,6 +384,8 @@ p {
 
 .navbar_destra {
     display: flex;
+    flex-grow: 1;
+    justify-content: flex-end;
     margin: 0;
     padding: 0;
     background-color: lightblue;
@@ -374,7 +393,7 @@ p {
 
 .navbar_el {
     list-style-type: none;
-    padding: 6% 2% 1% 2%;
+    padding: 2%;
 }
 
 .lista_sinistra {
@@ -400,6 +419,11 @@ p {
 
 .navbar_bottone {
     border: 0.5px solid black;
+}
+
+.area_utente {
+    padding-left: 1%;
+    padding-right: 1%;
 }
 
 .ereditato {
