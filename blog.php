@@ -2,6 +2,7 @@
 	session_start();
 	require 'db_handler.php';
 	require 'account.php';
+	$logged = false;
 	if(isset($_GET["blog"])) {
 		try {
 			$pdo = db_connect();
@@ -10,6 +11,8 @@
 				die("Impossibile trovare il blog richiesto!");
 			}
 			$posts = getPostDiBlog($_GET["blog"]);
+			$account = new Account();
+			$logged = $account -> loginDaSessione();
 		} catch(Exception $e) {
 			die($e->getMessage());
 		}
@@ -20,9 +23,6 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <!--
-        TODO: Inserimento commenti sotto al post
-    -->
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

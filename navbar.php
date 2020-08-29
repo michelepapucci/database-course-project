@@ -1,7 +1,10 @@
-<div class = "contenitore_navbar">
-    <ul class = "navbar_sinistra">
-        <li class = "navbar_el lista_sinistra"><a class = "link_standard" href="index.php">Home</a></li>
-        <li class = "navbar_el lista_sinistra"><a class = "link_standard" href="about.php">About</a></li>
+<?php
+	global $logged;
+?>
+<div class="contenitore_navbar">
+    <ul class="navbar_sinistra">
+        <li class="navbar_el lista_sinistra"><a class="link_standard" href="index.php">Home</a></li>
+        <li class="navbar_el lista_sinistra"><a class="link_standard" href="about.php">About</a></li>
     </ul>
     <ul class = "navbar_destra">
         <li class = "navbar_el lista_destra"><span>Ciao, nome utente</span></li>
