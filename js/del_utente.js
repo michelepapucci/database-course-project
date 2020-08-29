@@ -5,6 +5,7 @@ $(function(){
             $.ajax({
                 url: "delete_utente.php",
                 success(data){
+                    console.log(data);
                     if(data == 'ok'){
                         alert("Account eliminato correttamente!");
                         location.reload();

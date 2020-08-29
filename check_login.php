@@ -19,7 +19,3 @@
 	} else {
 		echo "Email o password errati";
 	}
-
-/*
- * TODO: aggiungere protezione da attacchi CSRF?
- */

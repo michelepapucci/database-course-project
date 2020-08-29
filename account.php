@@ -254,6 +254,6 @@
 	}
 
 	/*
-	 * TODO: Delete e Edit Account
+	 * TODO: Edit Account
 	 * TODO: commentare
 	 */
