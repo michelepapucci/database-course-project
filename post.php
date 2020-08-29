@@ -55,6 +55,10 @@
                 <span class="visualizzazioni">20 visualizzazioni -</span>
                 <a class="link" href="#commenti">Commenti (<?php echo(getNumeroCommenti($post["id_post"])); ?>)</a>
                 <br/>
+                <div class = "contenitore_box">
+                    <input type = "button" id = "modifica_post" class = "bottone_modifiche" value = "Modifica post">
+                    <input type = "button" id = "cancella_post" class = "bottone_modifiche" value = "Cancella post">
+                </div>
 				<?php
 					$immagini = getImmaginiPost($post["id_post"]);
 					if($immagini != false) {
