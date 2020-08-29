@@ -50,6 +50,11 @@
                 echo count($posts);
             }
             ?> post</span><br/>
+            <div class = "contenitore_box">
+                <input type = "button" id = "nuovo_post" class = "bottone_modifiche" value = "Scrivi un nuovo post">
+                <input type = "button" id = "modifica_blog" class = "bottone_modifiche" value = "Modifica blog">
+                <input type = "button" id = "cancella_blog" class = "bottone_modifiche" value = "Cancella blog">
+            </div>
             <div>
                 <?php
                 foreach($posts as $post) {
@@ -62,7 +67,6 @@
                     </a>");
                 }
                 ?>
-                <!-- Quando si clicca sul div del post si va alla pagina di visualizzazione del post -->
             </div>
         </div>
         <div class="destra">
