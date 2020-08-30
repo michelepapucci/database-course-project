@@ -27,6 +27,7 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="js/slideshow.js"></script>
+    <script src="js/co-autore.js"></script>
     <title><?php echo $blog["titolo_blog"]; ?></title>
 </head>
 <body class=" <?php echo $blog["font"]; ?>" <?php
@@ -54,6 +55,11 @@
                 <input type = "button" id = "nuovo_post" class = "bottone_modifiche" value = "Scrivi un nuovo post">
                 <input type = "button" id = "modifica_blog" class = "bottone_modifiche" value = "Modifica blog">
                 <input type = "button" id = "cancella_blog" class = "bottone_modifiche" value = "Cancella blog">
+                <input type = "button" id = "co-autore" class = "bottone_modifiche" value = "Aggiungi un co-autore">
+            </div>
+            <div id = "co-autore-div" class = "nascosto">
+                <p>Inserisci l'email della persona che vuoi aggiungere come co-autore e premi "Conferma"</p>
+                <input type = "email" class = "campo_piccolo" id = "co-autore-email" name = "co-autore-email" placeholder = "Inserisci l'email">
             </div>
             <div>
                 <?php
@@ -62,7 +68,7 @@
                     <a class = 'link_contenitore_post' href = 'post.php?id_post=" . $post["id_post"] . "'>
                         <div class='contenitore_post'>
                             <h3>" . $post["titolo_post"] . "</h3>
-                            <p>" . substr($post["testo_post"], 0, 100) . "...</p>
+                            <p>" . substr($post["testo_post"], 0, 200) . "...</p>
                         </div>
                     </a>");
                 }

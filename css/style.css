@@ -324,6 +324,14 @@ p {
     background-color: white;
 }
 
+.bottone_modifiche:hover {
+    background-color: #fadadd;
+}
+
+.nascosto {
+    display: none !important;
+}
+
 .contenitore_post {
 
     border: 1.5px solid;
@@ -478,6 +486,7 @@ p {
     display: flex;
     justify-content: center;
     text-align: center;
+    flex-wrap: wrap;
 }
 .box_multipli {
     border: 2px solid #fadadd;
