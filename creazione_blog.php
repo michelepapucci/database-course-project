@@ -65,7 +65,6 @@
                         ?>
                     </select><br>
                     <label for="tema" class="consegna_piccola">Scegli un tema da dare al tuo blog</label><br/>
-                    <!-- TODO: guardare se stilabile -->
                     <input type="text" list = "temi" class="tema" id="tema" name="tema" maxlength="30" required><br/>
                     <datalist id="temi"></datalist>
                     <input type="submit" value="Crea blog" class="bottone">

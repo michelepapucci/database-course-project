@@ -46,7 +46,12 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="js/slideshow.js"></script>
-    <script src="js/co-autore.js"></script>
+    <?php
+        if($propietario) {
+            echo '<script src = "js/co-autore.js"></script>';
+            echo '<script src = "js/del_blog.js"></script>';
+        }
+    ?>
     <title><?php echo $blog["titolo_blog"]; ?></title>
 </head>
 <body class=" <?php echo $blog["font"]; ?>" <?php

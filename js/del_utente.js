@@ -13,7 +13,7 @@ $(function(){
                         alert("Errore durante l'eliminazione dell'account!");
                     }
                 }
-            })
+            });
         }
     });
 });
