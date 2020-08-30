@@ -35,13 +35,13 @@
 <div class = "navbar_sotto">
     <form class = "navbar_form">
         <label class = "inline" for="ricerca">Cerca un blog per
-            <select class = "navbar_select" name="opzioni" id="opzioni">
+            <select class = "aliceblue" name="opzioni" id="opzioni">
                 <option value="nome" id = "nome">nome</option>
                 <option value="categoria" id = "categoria">categoria</option>
                 <option value="tema" id = "tema">tema</option>
             </select> : </label>
-        <input type="search" class = "navbar_ricerca" id="ricerca" name="ricerca">
-        <input type="submit" class = "navbar_bottone" value = "Cerca">
+        <input type="search" class = "navbar_ricerca aliceblue" id="ricerca" name="ricerca">
+        <input type="submit" class = "navbar_bottone aliceblue" value = "Cerca">
     </form>
 </div>
 

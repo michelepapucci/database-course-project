@@ -45,8 +45,22 @@
                 <a class="consegna_media link" href="login.php">Accedi</a>
             </div>
             <div class="box_multipli">
-                <p class="consegna_piccola">Senti il bisogno di tentare l'ignoto?</p><br/>
-                <a class="consegna_media link" href="post.php">Visita un blog a caso!</a>
+                <p class="consegna_piccola">Gestisci i tuoi blog!</p>
+                <div class = "contenitore_box">
+                    <select class="selezione aliceblue" id = "miei_blog" name = "miei_blog">
+                        <?php
+                        try {
+                            $categorie = getCategorie();
+                            foreach($categorie as $cat) {
+                                echo "<option value = '" . $cat["id_cat"] . "'>" . $cat["nome_cat"] . "</option>";
+                            }
+                        } catch(Exception $e) {
+                            echo "<option disabled>Errore! Categorie non trovate. Contattare webmaster</option>";
+                        }
+                        ?>
+                    </select>
+                    <input type = "button" class = "bottone_modifiche aliceblue" value = "Visita">
+                </div>
             </div>
         </div>
 		<?php
@@ -62,7 +76,7 @@
 					<?php
 						foreach($latest_post as $p) {
 							echo '
-                                <div class="box_multipli">
+                                <div class="box_multipli verticali">
                                     <a class="link consegna_media" href="post.php?id_post=' . $p["id_post"] . '">' . $p["titolo_post"] . '</a>
                                     <p class="consegna_piccola">' . substr($p["testo_post"], 0, 200) . '...</p>
                                     <a class="link" href=blog.php?blog=' . $p["id_blog"] . '>Da "' . $p["titolo_blog"] . '"</a>
