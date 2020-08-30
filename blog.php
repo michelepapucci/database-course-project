@@ -28,10 +28,10 @@
 				}
 			}
 			if($propietario) {
-			    $_SESSION["blog_attivo"] = $_GET["blog"];
-            } else {
-			    $_SESSION["blog_attivo"] == '';
-            }
+				$_SESSION["blog_attivo"] = $_GET["blog"];
+			} else {
+				$_SESSION["blog_attivo"] == '';
+			}
 		} catch(Exception $e) {
 			die($e->getMessage());
 		}
@@ -77,15 +77,17 @@
                               <a id="modifica_blog" class="bottone_modifiche link_standard">Modifica Blog</a>';
 					}
 					if($propietario) {
-            echo ' <input type = "button" id = "co-autore" class = "bottone_modifiche" value = "Aggiungi un co-autore">'
+						echo ' <a id = "co-autore" class = "bottone_modifiche">Aggiungi un co-autore</a>';
 						echo '<a id="cancella_blog" class="bottone_modifiche link_standard">Cancella blog</a>';
 					}
 				?>
-            <div id = "co-autore-div" class = "nascosto">
-                <p>Inserisci l'email della persona che vuoi aggiungere come co-autore e premi "Conferma"</p>
-                <input type = "email" class = "campo_piccolo" id = "co-autore-email" name = "co-autore-email" placeholder = "Inserisci l'email">
             </div>
-        <div>
+            <div id="co-autore-div" class="nascosto">
+                <p>Inserisci l'email della persona che vuoi aggiungere come co-autore e premi "Conferma"</p>
+                <input type="email" class="campo_piccolo" id="co-autore-email" name="co-autore-email"
+                       placeholder="Inserisci l'email">
+            </div>
+            <div>
 				<?php
 					foreach($posts as $post) {
 						echo("
