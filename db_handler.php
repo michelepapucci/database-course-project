@@ -126,20 +126,24 @@
 			throw new Exception("Impossibile trovare i blog nella categoria!");
 		}
 	}
-
-	/* TODO: aggiungere i blog di cui l'utente è coautore */
+	
 	function getBlogUtente($id_ut)
 	{
 		global $pdo;
 		try {
-			$stmt = $pdo->prepare("SELECT * 
+			$stmt = $pdo->prepare("(SELECT co_autore.id_blog
+    										FROM blog, utente_registrato, co_autore
+											WHERE blog.id_blog = co_autore.id_blog
+											AND utente_registrato.id_utente = co_autore.id_utente
+											AND co_autore.id_utente = :id1)
+											UNION
+											(SELECT id_blog 
 											FROM blog
-											WHERE blog.id_utente = :id
-											");
-			$stmt->execute(array(':id' => $id_ut));
+											WHERE blog.id_utente = :id2)");
+			$stmt->execute(array(':id1' => $id_ut, ':id2' => $id_ut));
 			return $stmt->fetchAll();
 		} catch(PDOException $e) {
-			throw new Exception("Impossibile trovare blog dell'utente");
+			throw new Exception("Impossibile trovare blog dell'utente" . $e->getMessage());
 		}
 	}
 
