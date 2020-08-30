@@ -126,7 +126,7 @@
 			throw new Exception("Impossibile trovare i blog nella categoria!");
 		}
 	}
-	
+
 	function getBlogUtente($id_ut)
 	{
 		global $pdo;
