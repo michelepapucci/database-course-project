@@ -63,9 +63,9 @@
 						foreach($latest_post as $p) {
 							echo '
                                 <div class="box_multipli">
-                                    <a class="link consegna_media" href="post.php">' . $p["titolo_post"] . '</a>
+                                    <a class="link consegna_media" href="post.php?id_post=' . $p["id_post"] . '">' . $p["titolo_post"] . '</a>
                                     <p class="consegna_piccola">' . substr($p["testo_post"], 0, 200) . '...</p>
-                                    <a class="link">Da "' . $p["titolo_blog"] . '"</a>
+                                    <a class="link" href=blog.php?blog=' . $p["id_blog"] . '>Da "' . $p["titolo_blog"] . '"</a>
                                     <span> - di ' . $p["nome_utente"] . ' - </span>
                                     <span> da ' . $p["nome_tema"] . ' - </span>
                                     <span>  in ' . $p["nome_cat"] . '</span>
