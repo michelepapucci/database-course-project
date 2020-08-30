@@ -3,6 +3,8 @@
 	require 'db_handler.php';
 	require 'account.php';
     $logged = false;
+    $propietario = false;
+    $coautore = false;
 	try {
 		$pdo = db_connect();
 		if(isset($_GET["id_post"])) {
@@ -11,15 +13,31 @@
 				die("ERRORE 404 - Pagina non trovata!");
 			}
 			$blog = getBlog($post["id_blog"]);
+			$coAut = getCoautoriDiBlog($post["id_blog"]);
 		} else {
 			die("ERRORE 400 - Nessun post specificato!");
 		}
 		$account = new Account();
 		$logged = $account->loginDaSessione();
+		if($blog["id_utente"] == $account->getId()) {
+			$propietario = true;
+		}
+		if(is_array($coAut) && count($coAut) > 0) {
+			foreach($coAut as $c) {
+				if($c["id_utente"] == $account->getId()) {
+					$coautore = true;
+					break;
+				}
+			}
+		}
 	} catch(Exception $e) {
 		die($e->getMessage());
 	}
-
+	if($propietario) {
+	    $_SESSION["post_attivo"] = $_GET["id_post"];
+    } else {
+	    $_SESSION["post_attivo"] = '';
+    }
 ?>
 <!DOCTYPE html>
 <html lang="it">
@@ -32,6 +50,9 @@
 		if($logged) {
 			echo '<script src="js/inserisci-commento.js"></script>';
 		}
+		if($propietario) {
+		    echo '<script src="js/del_post.js"></script>';
+        }
 	?>
     <title><?php echo $post["titolo_post"] ?></title>
 </head>
@@ -56,8 +77,14 @@
                 <a class="link" href="#commenti">Commenti (<?php echo(getNumeroCommenti($post["id_post"])); ?>)</a>
                 <br/>
                 <div class = "contenitore_box">
-                    <input type = "button" id = "modifica_post" class = "bottone_modifiche" value = "Modifica post">
-                    <input type = "button" id = "cancella_post" class = "bottone_modifiche" value = "Cancella post">
+                    <?php
+                        if($propietario || $coautore) {
+                            echo '<input type = "button" id = "modifica_post" class = "bottone_modifiche" value = "Modifica post">';
+                        }
+                        if($propietario) {
+                            echo '<input type = "button" id = "cancella_post" class = "bottone_modifiche" value = "Cancella post">';
+                        }
+                    ?>
                 </div>
 				<?php
 					$immagini = getImmaginiPost($post["id_post"]);

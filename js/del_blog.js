@@ -5,7 +5,7 @@ $(function() {
                 url: "delete_blog.php",
                 success(data){
                     console.log(data);
-                    if(data == 'ok'){
+                    if(data === 'ok'){
                         alert("Blog eliminato correttamente!");
                         document.location.href="index.php";
                     } else {
