@@ -3,6 +3,8 @@
 	require 'db_handler.php';
 	require 'account.php';
 	$logged = false;
+	$propietario = false;
+	$coautore = false;
 	if(isset($_GET["blog"])) {
 		try {
 			$pdo = db_connect();
@@ -10,9 +12,26 @@
 			if(!$blog) {
 				die("Impossibile trovare il blog richiesto!");
 			}
+			$coAut = getCoautoriDiBlog($_GET["blog"]);
 			$posts = getPostDiBlog($_GET["blog"]);
 			$account = new Account();
-			$logged = $account -> loginDaSessione();
+			$logged = $account->loginDaSessione();
+			if($blog["id_utente"] == $account->getId()) {
+				$propietario = true;
+			}
+			if(is_array($coAut) && count($coAut) > 0) {
+				foreach($coAut as $c) {
+					if($c["id_utente"] == $account->getId()) {
+						$coautore = true;
+						break;
+					}
+				}
+			}
+			if($propietario) {
+			    $_SESSION["blog_attivo"] = $_GET["blog"];
+            } else {
+			    $_SESSION["blog_attivo"] == '';
+            }
 		} catch(Exception $e) {
 			die($e->getMessage());
 		}
@@ -30,62 +49,68 @@
     <title><?php echo $blog["titolo_blog"]; ?></title>
 </head>
 <body class=" <?php echo $blog["font"]; ?>" <?php
-    echo "style = '";
-    if(filter_var($blog["sfondo"], FILTER_VALIDATE_URL)) {
-        echo "background-image: url(\"" . $blog["sfondo"] . "\")'";
-    }
-    if($blog["sfondo"]) {
+	echo "style = '";
+	if(filter_var($blog["sfondo"], FILTER_VALIDATE_URL)) {
+		echo "background-image: url(\"" . $blog["sfondo"] . "\")'";
+	}
+	if($blog["sfondo"]) {
 		echo "background-color: " . $blog["sfondo"] . "'";
-    }
+	}
 ?>>
-    <?php include 'navbar.php' ?>
-    <div class = "contenitore">
+	<?php include 'navbar.php' ?>
+    <div class="contenitore">
         <div class="sinistra">
             <h1 class="titolo"><?php echo $blog["titolo_blog"]; ?></h1>
             <span class="autore_post"><?php echo $blog["nome_utente"]; ?> -</span>
             <span class="visualizzazioni"><?php echo $blog["nome_tema"] . " - " . $blog["nome_cat"]; ?> -</span>
             <span class="numero_post">
             <?php
-            if(is_array($posts)) {
-                echo count($posts);
-            }
-            ?> post</span><br/>
-            <div class = "contenitore_box">
-                <input type = "button" id = "nuovo_post" class = "bottone_modifiche" value = "Scrivi un nuovo post">
-                <input type = "button" id = "modifica_blog" class = "bottone_modifiche" value = "Modifica blog">
-                <input type = "button" id = "cancella_blog" class = "bottone_modifiche" value = "Cancella blog">
+				if(is_array($posts)) {
+					echo count($posts);
+				}
+			?> post</span><br/>
+            <div class="contenitore_box">
+				<?php
+					if($propietario || $coautore) {
+						echo '<a href="creazione_post.php?blog=' . $_GET["blog"] . '" id="nuovo_post" class="bottone_modifiche link_standard">Scrivi un nuovo post</a>
+                              <a id="modifica_blog" class="bottone_modifiche link_standard">Modifica Blog</a>';
+					}
+					if($propietario) {
+						echo '<a id="cancella_blog" class="bottone_modifiche link_standard">Cancella blog</a>';
+					}
+				?>
             </div>
             <div>
-                <?php
-                foreach($posts as $post) {
-                    echo("
+				<?php
+					foreach($posts as $post) {
+						echo("
                     <a class = 'link_contenitore_post' href = 'post.php?id_post=" . $post["id_post"] . "'>
                         <div class='contenitore_post'>
                             <h3>" . $post["titolo_post"] . "</h3>
                             <p>" . substr($post["testo_post"], 0, 100) . "...</p>
                         </div>
                     </a>");
-                }
-                ?>
+					}
+				?>
             </div>
         </div>
         <div class="destra">
             <div class="div_titoletto">
                 <h3 class="titoletto">Altri Blog in <?php echo $blog["nome_cat"] ?></h3>
             </div>
-            <?php
-            try {
-                $cat_blogs = getBlogDiCategoria($blog["id_cat"]);
-            } catch(Exception $e) {
-                die($e->getMessage());
-            }
+			<?php
+				try {
+					$cat_blogs = getBlogDiCategoria($blog["id_cat"]);
+				} catch(Exception $e) {
+					die($e->getMessage());
+				}
 
-            foreach($cat_blogs as $c) {
-                try {
-                    if($c["id_blog"] != $_GET["blog"]) {
-                        $c_post = getPostDiBlog($c["id_blog"]);
-                        if(is_array($c_post) && count($c_post) > 0) {
-                            echo("
+				foreach($cat_blogs as $c) {
+					try {
+						if($c["id_blog"] != $_GET["blog"]) {
+							$c_post = getPostDiBlog($c["id_blog"]);
+							if(is_array($c_post) && count($c_post) > 0) {
+								echo("
                                 <div class='contenitore_blog div_titoletto'>
                                     <a class='link titolo_altro_blog'>" . $c["titolo_blog"] . "</a>
                                     <div class='contenitore_post_altro_blog'>
@@ -94,13 +119,13 @@
                                     </div>
                                 </div>
                             ");
-                        }
-                    }
-                } catch(Exception $e) {
-                    die($e->getMessage());
-                }
-            }
-            ?>
+							}
+						}
+					} catch(Exception $e) {
+						die($e->getMessage());
+					}
+				}
+			?>
         </div>
     </div>
 </body>

@@ -64,7 +64,7 @@
 		global $pdo;
 		try {
 			$stmt = $pdo->prepare("
-											SELECT titolo_blog, sfondo, font, nome_cat, nome_tema, nome_utente, categoria.id_cat
+											SELECT titolo_blog, sfondo, font, nome_cat, nome_tema, nome_utente, categoria.id_cat, blog.id_utente
 											FROM blog, categoria, tema, utente_registrato
 											WHERE id_blog = :id
 											AND blog.id_utente = utente_registrato.id_utente
@@ -78,6 +78,21 @@
 			}
 		} catch(PDOException $e) {
 			throw new Exception("Impossibile trovare il blog richiesto");
+		}
+	}
+
+	function getCoautoriDiBlog($id_blog) {
+		global $pdo;
+		try {
+			$stmt = $pdo -> prepare ("SELECT DISTINCT co_autore.id_utente
+											FROM utente_registrato, co_autore, blog
+											WHERE utente_registrato.id_utente = co_autore.id_utente
+											AND blog.id_blog = co_autore.id_blog
+											AND blog.id_blog = :id");
+			$stmt -> execute(array(':id'=>$id_blog));
+			return $stmt->fetchAll();
+		} catch(PDOException $e) {
+			throw new Exception($e->getMessage());
 		}
 	}
 
@@ -183,7 +198,7 @@
 
 		try {
 			$stmt = $pdo -> prepare ("
-											SELECT titolo_post, testo_post, nome_utente, titolo_blog, nome_cat, nome_tema
+											SELECT titolo_post, testo_post, nome_utente, titolo_blog, nome_cat, nome_tema, id_post, blog.id_blog
 											FROM post, blog, categoria, tema, utente_registrato
 											WHERE post.id_utente = utente_registrato.id_utente
 											AND blog.id_blog = post.id_blog
