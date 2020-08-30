@@ -3,31 +3,59 @@
 
 function gestoreCaricamentoEmail() {
     try {
-        $('#co-autore-div').toggleClass("nascosto");
-        if ($('#co-autore').val() == "Conferma") {
-            $('#co-autore').val("Aggiungi un co-autore");
-            let msg = JSON.stringify({email: $("#co-autore-email").val()});
+        $('#co-autore-aggiungi-div').toggleClass("nascosto");
+        if ($('#co-autore-aggiungi').text() == "Aggiungi") {
+            $('#co-autore-aggiungi').text("Aggiungi un co-autore");
+            let msg = JSON.stringify({email: $("#co-autore-aggiungi-email").val()});
             $.ajax({
                 url: "insert_co-autore.php",
                 type: 'post',
                 data: {data: msg},
-                success: function(data, status, xhr){
-                    console.log(data);
+                success: function (data, status, xhr) {
+                    if (data != "ok") {
+                        alert("Impossibile aggiungere co-autore (la mail inserita potrebbe non esistere)");
+                    }
                 }
             })
         } else {
-            $('#co-autore').val("Conferma");
+            $('#co-autore-aggiungi').text("Aggiungi");
         }
-    } catch(e) {
+    } catch (e) {
         console.error("gestoreCaricamentoEmail " + e);
+        return false;
+    }
+}
+
+function gestoreRimozioneEmail() {
+    try {
+        $('#co-autore-rimuovi-div').toggleClass("nascosto");
+        if ($('#co-autore-rimuovi').text() == "Rimuovi") {
+            $('#co-autore-rimuovi').text("Rimuovi un co-autore");
+            let msg = JSON.stringify({email: $("#co-autore-rimuovi-email").val()});
+            $.ajax({
+                url: "delete_co-autore.php",
+                type: 'post',
+                data: {data: msg},
+                success: function (data, status, xhr) {
+                    if (data != "ok") {
+                        alert("Impossibile rimuovere co-autore (la mail inserita potrebbe non esistere)");
+                    }
+                }
+            })
+        } else {
+            $('#co-autore-rimuovi').text("Rimuovi");
+        }
+    } catch (e) {
+        console.error("gestoreRimozioneEmail " + e);
         return false;
     }
 }
 
 function gestoreLoad() {
     try {
-        $("#co-autore").on('click', gestoreCaricamentoEmail);
-    } catch(e) {
+        $("#co-autore-aggiungi").on('click', gestoreCaricamentoEmail);
+        $("#co-autore-rimuovi").on('click', gestoreRimozioneEmail);
+    } catch (e) {
         console.error("gestoreLoad " + e);
     }
 }
