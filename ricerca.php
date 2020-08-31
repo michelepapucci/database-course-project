@@ -35,7 +35,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src='js/ricerca.js'></script>
 </head>
-<body class = "home">
+<body class = "home a_capo">
     <?php include 'navbar.php';?>
     <p class = "consegna">Elenco blog in Categoria/Tema</p>
     <p class = "consegna_piccola">Qui puoi trovare il risultato della tua ricerca.<br/>

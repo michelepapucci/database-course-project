@@ -156,7 +156,7 @@
                 } else {
 				    echo '
                             <div class = "div_titoletto">
-                                <p class = "titoletto">Non ci sono altri blog in Biologia.</p>
+                                <p class = "titoletto">Non ci sono altri blog in questa categoria.</p>
                             </div>';
                 }
 			?>
