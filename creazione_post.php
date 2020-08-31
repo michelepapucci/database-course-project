@@ -109,13 +109,11 @@
                 </div>
                 <label for="testo_post" class="consegna">Scrivi qui il tuo post</label><br/>
                 <div class="post_area">
-                    <textarea id="testo_post" name="testo_post" maxlength="10000" rows="20">
-                        <?php
+                    <textarea id="testo_post" name="testo_post" maxlength="10000" rows="20"><?php
 							if($edit) {
 								echo $post["testo_post"];
 							}
-						?>
-                    </textarea>
+						?></textarea>
                     <a id="caratteri_rim">0</a><br/>
                 </div>
                 <input type="submit" value="Pubblica" class="bottone">

@@ -372,8 +372,8 @@ function getBlogPerTema($val)
 		if($pdo != false) {
 			try {
 				$stmt = $pdo->prepare("
-												INSERT INTO post(titolo_post, testo_post, data_ora_post, id_blog, id_utente, visibile)
-												VALUES(:tit, :tes, NOW(), :b_id, :u_id, 1)");
+												INSERT INTO post(titolo_post, testo_post, data_ora_post, id_blog, id_utente)
+												VALUES(:tit, :tes, NOW(), :b_id, :u_id)");
 				$stmt->execute(array(':tit' => $titolo, ':tes' => $testo, ':b_id' => $id_blog, ':u_id' => $id_utente));
 				return $pdo->lastInsertId();
 			} catch(PDOException $e) {

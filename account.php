@@ -4,14 +4,12 @@
 	{
 		private $id;
 		private $nome;
-		private $premium;
 		private $autenticato;
 
 		public function __construct()
 		{
 			$this->id = NULL;
 			$this->nome = NULL;
-			$this->premium = false;
 			$this->autenticato = false;
 		}
 
@@ -44,8 +42,8 @@
 			}
 
 			try {
-				$stmt = $pdo->prepare("INSERT INTO utente_registrato(nome_utente, password, email, documento, cellulare, premium, data_ora_reg)
-			VALUES(:nome, :psw, :email, :documento, :cellulare, false, NOW())");
+				$stmt = $pdo->prepare("INSERT INTO utente_registrato(nome_utente, password, email, documento, cellulare, data_ora_reg)
+			VALUES(:nome, :psw, :email, :documento, :cellulare, NOW())");
 				$hashpsw = password_hash($password, PASSWORD_DEFAULT);
 				$values = array(':nome' => $nome, ':psw' => $hashpsw, ':email' => $email, ':documento' => $documento, ':cellulare' => $cellulare);
 				$stmt->execute($values);
@@ -80,7 +78,6 @@
 					$this->id = $res["id_utente"];
 					$this->nome = $res["nome_utente"];
 					$this->autenticato = true;
-					$this->premium = $res["premium"];
 					$this->registraSessione();
 					return true;
 				}
@@ -109,7 +106,6 @@
 					$this->id = $res["id_utente"];
 					$this->nome = $res["nome_utente"];
 					$this->autenticato = true;
-					$this->premium = $res["premium"];
 					return true;
 				}
 			}
@@ -127,7 +123,6 @@
 			$this->id = NULL;
 			$this->nome = NULL;
 			$this->autenticato = false;
-			$this->premium = false;
 
 			if(session_status() == PHP_SESSION_ACTIVE) {
 				try {
@@ -260,5 +255,4 @@
 
 	/*
 	 * TODO: Edit Account
-	 * TODO: commentare
 	 */
