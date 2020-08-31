@@ -84,7 +84,7 @@
 	function getCoautoriDiBlog($id_blog) {
 		global $pdo;
 		try {
-			$stmt = $pdo -> prepare ("SELECT DISTINCT co_autore.id_utente
+			$stmt = $pdo -> prepare ("SELECT DISTINCT co_autore.id_utente, nome_utente
 											FROM utente_registrato, co_autore, blog
 											WHERE utente_registrato.id_utente = co_autore.id_utente
 											AND blog.id_blog = co_autore.id_blog

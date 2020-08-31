@@ -15,6 +15,7 @@ function gestoreCaricamentoEmail() {
                     if (data != "ok") {
                         alert("Impossibile aggiungere co-autore (la mail inserita potrebbe non esistere)");
                     }
+                    location.reload();
                 }
             })
         } else {
@@ -40,6 +41,7 @@ function gestoreRimozioneEmail() {
                     if (data != "ok") {
                         alert("Impossibile rimuovere co-autore (la mail inserita potrebbe non esistere)");
                     }
+                    location.reload();
                 }
             })
         } else {
