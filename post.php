@@ -74,16 +74,16 @@
             <div>
                 <span class="autore_post"><?php echo $post["nome_utente"] ?> -</span>
                 <span class="data_post"><?php echo $post["data_ora_post"] ?> -</span>
-                <span class="visualizzazioni">20 visualizzazioni -</span>
+                <a class = "link_standard"<?php echo "href= 'blog.php?blog=" . $post["id_blog"] . "'>" . $blog["titolo_blog"]?> -</a>
                 <a class="link" href="#commenti">Commenti (<?php echo(getNumeroCommenti($post["id_post"])); ?>)</a>
                 <br/>
                 <div class = "contenitore_box">
                     <?php
                         if($propietario || $coautore) {
-                            echo '<input type = "button" id = "modifica_post" class = "bottone_modifiche" value = "Modifica post">';
+                            echo '<a href="creazione_post.php?id_post='. $_GET["id_post"] .'&edit=true&blog=' . $post["id_blog"] . '" id = "modifica_post" class = "bottone_modifiche link_standard">Modifica Post</a>';
                         }
                         if($propietario) {
-                            echo '<input type = "button" id = "cancella_post" class = "bottone_modifiche" value = "Cancella post">';
+                            echo '<a id = "cancella_post" class = "bottone_modifiche link_standard">Cancella Post</a>';
                         }
                     ?>
                 </div>

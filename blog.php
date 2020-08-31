@@ -76,12 +76,20 @@
 					echo count($posts);
 				}
 			?> post</span><br/>
-            <span>Co-autori: Nomi co-autori</span>
+                <?php
+                    if(count($coAut) > 0){
+                        echo "<span> Co-Autori: ";
+                        foreach($coAut as $c) {
+                            echo $c["nome_utente"] . " ";
+                        }
+                        echo "</span>";
+                    }
+                ?>
             <div class="contenitore_box">
 				<?php
 					if($propietario || $coautore) {
 						echo '<a href="creazione_post.php?blog=' . $_GET["blog"] . '" id="nuovo_post" class="bottone_modifiche link_standard">Scrivi un nuovo post</a>
-                              <a id="modifica_blog" class="bottone_modifiche link_standard">Modifica Blog</a>';
+                              <a href="creazione_blog.php?blog='. $_GET["blog"] .'&edit=true" id="modifica_blog" class="bottone_modifiche link_standard">Modifica Blog</a>';
 					}
 					if($propietario) {
 						echo '<a id = "co-autore-aggiungi" class = "bottone_modifiche">Aggiungi un co-autore</a>';
