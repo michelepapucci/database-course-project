@@ -251,6 +251,54 @@
 		}
 	}
 
+	function getNomiRicerca($input)
+    {
+        global $pdo;
+
+        try {
+            $stmt = $pdo -> prepare("
+                                               SELECT *
+                                               FROM blog
+                                               WHERE titolo_blog LIKE :inp");
+            $stmt -> execute(array(':inp' => '%' . $input . '%'));
+            return $stmt -> fetchAll();
+        } catch (PDOException $e) {
+            throw new Exception("Errore selezione nomi");
+        }
+    }
+
+    function getCategorieRicerca($input)
+    {
+        global $pdo;
+
+        try {
+            $stmt = $pdo -> prepare("
+                                               SELECT *
+                                               FROM categoria
+                                               WHERE nome_cat LIKE :inp");
+            $stmt -> execute(array(':inp' => $input . '%'));
+            return $stmt -> fetchAll();
+        } catch (PDOException $e) {
+            throw new Exception("Errore selezione categorie");
+        }
+    }
+
+    function getTemiRicerca($input)
+    {
+        global $pdo;
+
+        try {
+            $stmt = $pdo -> prepare("
+                                               SELECT *
+                                               FROM tema
+                                               WHERE nome_tema LIKE :inp");
+            $stmt -> execute(array(':inp' => '%' . $input . '%'));
+            return $stmt -> fetchAll();
+        } catch (PDOException $e) {
+            throw new Exception("Errore selezione temi");
+        }
+    }
+
 	function inserisciPost($titolo, $testo, $id_blog, $id_utente)
 	{
 		global $pdo;

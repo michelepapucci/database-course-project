@@ -33,14 +33,15 @@
     </ul>
 </div>
 <div class = "navbar_sotto">
-    <form class = "navbar_form">
+    <form class = "navbar_form" action = "ricerca.php" method = "get">
         <label class = "inline" for="ricerca">Cerca un blog per
             <select class = "aliceblue" name="opzioni" id="opzioni">
-                <option value="nome" id = "nome">nome</option>
-                <option value="categoria" id = "categoria">categoria</option>
-                <option value="tema" id = "tema">tema</option>
+                <option value="nome">nome</option>
+                <option value="categoria">categoria</option>
+                <option value="tema">tema</option>
             </select> : </label>
-        <input type="search" class = "navbar_ricerca aliceblue" id="ricerca" name="ricerca">
+        <input type="search" list = "ricerche" class = "navbar_ricerca aliceblue" id="ricerca" name="ricerca">
+        <datalist id="ricerche"></datalist>
         <input type="submit" class = "navbar_bottone aliceblue" value = "Cerca">
     </form>
 </div>
