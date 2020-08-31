@@ -503,7 +503,7 @@ p {
 .box_multipli {
     border: 2px solid #fadadd;
     padding-bottom: 2%;
-    padding-top: 1%;
+    padding-top: 2%;
     flex-grow: 1;
     margin: 2%
 }
@@ -516,3 +516,8 @@ p {
     flex-direction: column;
 }
 
+/*Pagina di visualizzazione delle ricerche */
+
+.box_multipli_ricerca {
+    width: min-content;
+}

@@ -251,6 +251,120 @@
 		}
 	}
 
+	function getNomiRicerca($input)
+    {
+        global $pdo;
+
+        try {
+            $stmt = $pdo -> prepare("
+                                               SELECT *
+                                               FROM blog
+                                               WHERE titolo_blog LIKE :inp");
+            $stmt -> execute(array(':inp' => '%' . $input . '%'));
+            return $stmt -> fetchAll();
+        } catch (PDOException $e) {
+            throw new Exception("Errore selezione nomi");
+        }
+    }
+
+    function getCategorieRicerca($input)
+    {
+        global $pdo;
+
+        try {
+            $stmt = $pdo -> prepare("
+                                               SELECT *
+                                               FROM categoria
+                                               WHERE nome_cat LIKE :inp");
+            $stmt -> execute(array(':inp' => $input . '%'));
+            return $stmt -> fetchAll();
+        } catch (PDOException $e) {
+            throw new Exception("Errore selezione categorie");
+        }
+    }
+
+    function getTemiRicerca($input)
+    {
+        global $pdo;
+
+        try {
+            $stmt = $pdo -> prepare("
+                                               SELECT *
+                                               FROM tema
+                                               WHERE nome_tema LIKE :inp");
+            $stmt -> execute(array(':inp' => '%' . $input . '%'));
+            return $stmt -> fetchAll();
+        } catch (PDOException $e) {
+            throw new Exception("Errore selezione temi");
+        }
+    }
+
+function getBlogPerNome($val)
+{
+    global $pdo;
+    try {
+        $stmt = $pdo->prepare("
+											SELECT id_blog, titolo_blog, nome_utente, nome_cat, nome_tema
+											FROM blog, categoria, tema, utente_registrato
+											WHERE titolo_blog LIKE :titolo
+											AND blog.id_utente = utente_registrato.id_utente
+											AND categoria.id_cat = tema.id_cat
+											AND tema.id_tema = blog.id_tema");
+        $stmt->execute(array(':titolo' => '%' . $val . '%'));
+        if($blog = $stmt->fetchAll()) {
+            return $blog;
+        } else {
+            return false;
+        }
+    } catch(PDOException $e) {
+        throw new Exception("Impossibile trovare i blog con il nome richiesto");
+    }
+}
+
+function getBlogPerCategoria($val)
+{
+    global $pdo;
+    try {
+        $stmt = $pdo->prepare("
+											SELECT id_blog, titolo_blog, nome_utente, nome_cat, nome_tema
+											FROM blog, categoria, tema, utente_registrato
+											WHERE nome_cat = :cat
+											AND blog.id_utente = utente_registrato.id_utente
+											AND categoria.id_cat = tema.id_cat
+											AND tema.id_tema = blog.id_tema");
+        $stmt->execute(array(':cat' => $val));
+        if($blog = $stmt->fetchAll()) {
+            return $blog;
+        } else {
+            return false;
+        }
+    } catch(PDOException $e) {
+        throw new Exception("Impossibile trovare i blog con la categoria richiesta");
+    }
+}
+
+function getBlogPerTema($val)
+{
+    global $pdo;
+    try {
+        $stmt = $pdo->prepare("
+											SELECT id_blog, titolo_blog, nome_utente, nome_cat, nome_tema
+											FROM blog, categoria, tema, utente_registrato
+											WHERE nome_tema LIKE :tema
+											AND blog.id_utente = utente_registrato.id_utente
+											AND categoria.id_cat = tema.id_cat
+											AND tema.id_tema = blog.id_tema");
+        $stmt->execute(array(':tema' => '%' . $val . '%'));
+        if($blog = $stmt->fetchAll()) {
+            return $blog;
+        } else {
+            return false;
+        }
+    } catch(PDOException $e) {
+        throw new Exception("Impossibile trovare i blog con il tema richiesto");
+    }
+}
+
 	function inserisciPost($titolo, $testo, $id_blog, $id_utente)
 	{
 		global $pdo;

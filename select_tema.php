@@ -5,7 +5,7 @@
 	$ret = array();
 	try {
 		$pdo = db_connect();
-		$res = getTemiSimili($data->input, $data->categoria);;
+		$res = getTemiSimili($data->input, $data->categoria);
 		if(is_array($res) && count($res) != 0){
 			foreach($res as $r){
 				array_push($ret, $r["nome_tema"]);
