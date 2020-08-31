@@ -72,7 +72,7 @@
 			if(is_array($latest_post) && count($latest_post) > 0) {
 				?>
                 <p class="consegna_media">Sbircia gli ultimi post pubblicati sul sito</p>
-                <div class="contenitore_box contenitore_verticale">
+                <div class="contenitore_box contenitore_verticale a_capo">
 					<?php
 						foreach($latest_post as $p) {
 							echo '
