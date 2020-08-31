@@ -28,10 +28,12 @@
 				$immagini = array();
 				for($i = 1; $i < 6; $i++) {
 					if(isset($_POST["immagine" . $i])) {
-						if(is_array(@getimagesize($_POST["immagine" . $i]))) {
-							array_push($immagini, $_POST["immagine" . $i]);
-						} else {
-							echo "Non è stato possibile inserire l'immagine " . $i . ". Controllare che il link all'immagine sia corretto.<br/>";
+						if($_POST["immagine" . $i] != ""){
+							if(is_array(@getimagesize($_POST["immagine" . $i]))) {
+								array_push($immagini, $_POST["immagine" . $i]);
+							} else {
+								echo "Non è stato possibile inserire l'immagine " . $i . ". Controllare che il link all'immagine sia corretto.<br/>";
+							}
 						}
 					}
 				}
@@ -39,7 +41,7 @@
 				if(count($immagini) > 0) {
 					inserisciImmaginiPost($_SESSION["edit"], $immagini);
 				}
-
+				header("location: post.php?id_post=" . $_SESSION["edit"]);
 			} catch(Exception | PDOException $e) {
 				die($e->getMessage());
 			}
