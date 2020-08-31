@@ -21,7 +21,7 @@ try {
             }
         }
         echo json_encode($ret);
-    } else {
+    } else if ($data->tipo == "tema") {
         $res = getTemiRicerca($data->input);
         if(is_array($res) && count($res) != 0){
             foreach($res as $r){

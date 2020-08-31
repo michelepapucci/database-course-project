@@ -512,3 +512,8 @@ p {
     flex-direction: column;
 }
 
+/*Pagina di visualizzazione delle ricerche */
+
+.box_multipli_ricerca {
+    width: min-content;
+}
