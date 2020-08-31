@@ -27,7 +27,7 @@
 		?>
     </head>
     <body class="home">
-		<?php include 'navbar.php' ?>
+    <?php include 'navbar.php';?>
         <p class="consegna">Benvenuto su Bloggolo!</p>
         <p class="consegna_piccola">Bloggolo è una piattaforma che ti permette di creare gratuitamente il tuo blog
             personale, e di condividere

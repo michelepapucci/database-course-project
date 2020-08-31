@@ -31,7 +31,7 @@
     <script src='js/ricerca.js'></script>
 </head>
 <body class="autenticazione">
-    <?php include 'navbar.php' ?>
+    <?php include 'navbar.php';?>
     <p class="consegna">Registrati</p>
     <div class="box">
         <form id="form" action="insert_nuovo_utente.php" method="post">

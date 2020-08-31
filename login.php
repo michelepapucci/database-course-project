@@ -31,7 +31,7 @@
     <script src='js/ricerca.js'></script>
 </head>
 <body class="autenticazione">
-	<?php include 'navbar.php' ?>
+    <?php include 'navbar.php';?>
     <p class="consegna">Accedi</p>
     <div class="box">
         <form action="check_login.php" method="post">

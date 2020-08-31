@@ -131,9 +131,10 @@ p {
 }
 
 .titoletto {
-    padding: 1.5%;
-    border-top: 2px solid;
-    border-bottom: 2px solid;
+    padding: 2%;
+    border: 1.5px solid white;
+    background-color: #fadadd;
+    font-weight: lighter;
 }
 
 .contenitore_commenti {

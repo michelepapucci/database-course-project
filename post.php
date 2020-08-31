@@ -67,14 +67,14 @@
 		echo "background-color: " . $blog["sfondo"] . "'";
 	}
 ?>>
-    <?php include 'navbar.php' ?>
+    <?php include 'navbar.php';?>
     <div class="contenitore">
         <div class="sinistra">
             <h1 class="titolo"><?php echo $post["titolo_post"] ?></h1>
             <div>
                 <span class="autore_post"><?php echo $post["nome_utente"] ?> -</span>
                 <span class="data_post"><?php echo $post["data_ora_post"] ?> -</span>
-                <a class = "link_standard"<?php echo "href= 'blog.php?blog=" . $post["id_blog"] . "'>" . $blog["titolo_blog"]?> -</a>
+                <a class = "link"<?php echo "href= 'blog.php?blog=" . $post["id_blog"] . "'>" . $blog["titolo_blog"]?> -</a>
                 <a class="link" href="#commenti">Commenti (<?php echo(getNumeroCommenti($post["id_post"])); ?>)</a>
                 <br/>
                 <div class = "contenitore_box">
@@ -107,9 +107,7 @@
             </div>
             <!-- Id ancora per link ai commenti -->
             <div id="commenti">
-                <div class="div_titoletto">
-                    <h3 class="titoletto">Commenti</h3>
-                </div>
+                <h3>-<br/>Commenti<br/>-</h3>
 				<?php
 					$commenti = getCommenti($post["id_post"]);
 					if($commenti == false) {
@@ -154,21 +152,27 @@
             </div>
 			<?php
 				$posts = getLatestPostSidebar($post["id_post"]);
-				foreach($posts as $l_post) {
-					if($post["id_post"] != $l_post["id_post"]) {
-						echo("
+				if (count($posts) > 1) {
+                    foreach($posts as $l_post) {
+                        if($post["id_post"] != $l_post["id_post"]) {
+                            echo("
                         <div class = 'post_recenti'>
                             <a class = 'link' href = 'http://localhost/progettoBDD/post.php?id_post=" . $l_post["id_post"] . "'>" . $l_post["titolo_post"] . "</a>
                             <p>" . substr($l_post["testo_post"], 0, 100) . "...</p>
                         </div>
                         ");
-					}
-				}
+                        }
+                    }
+                } else {
+				    echo '
+				    <div class="div_titoletto">
+                        <p class="titoletto">Non ci sono altri post in questo blog.</p>
+                    </div>
+				    ';
+                }
 				$pdo = null;
 			?>
         </div>
     </div>
 </body>
 </html>
-
-<!-- TODO: se non esistono altri post da blog della stessa categoria, scriverlo sul lato destro  -->

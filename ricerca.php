@@ -36,6 +36,7 @@
     <script src='js/ricerca.js'></script>
 </head>
 <body class = "home">
+    <?php include 'navbar.php';?>
     <p class = "consegna">Elenco blog in Categoria/Tema</p>
     <p class = "consegna_piccola">Qui puoi trovare il risultato della tua ricerca.<br/>
                                     Nel caso in cui siano presenti più blog, li troverai elencati in ordine alfabetico.<br/>
@@ -48,7 +49,7 @@
             foreach ($res as $r) {
                 echo '
                     <div class="box_multipli verticali">
-                        <a class="link consegna" href="post.php?id_blog=' . $r["id_blog"] . '">' . $r["titolo_blog"] . '</a><br/><br/>
+                        <a class="link consegna" href="blog.php?blog=' . $r["id_blog"] . '">' . $r["titolo_blog"] . '</a><br/><br/>
                         <span>' . $r["nome_utente"] . ' - </span>
                         <span>' . $r["nome_tema"] . ' - </span>
                         <span>' . $r["nome_cat"] . '</span>';
@@ -63,7 +64,7 @@
                                     }
                                     echo ' 
                                             <div class="box_multipli box_multipli_ricerca">
-                                                <span class="consegna_media">' . $p["titolo_post"] . '</span><br/>
+                                                <a class="link consegna_media" href="post.php?id_post=' . $p["id_post"] . '">' . $p["titolo_post"] . '</a><br/>
                                                 <p class="consegna_piccola">' . substr($p["testo_post"], 0, 200) . '...</p>
                                             </div>';
                                 }

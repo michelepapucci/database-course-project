@@ -61,7 +61,7 @@
         <script src='js/ricerca.js'></script>
     </head>
     <body>
-		<?php include 'navbar.php' ?>
+    <?php include 'navbar.php';?>
         <div class="creazione">
             <form class="form"
 				<?php

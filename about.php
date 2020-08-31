@@ -22,7 +22,7 @@
     <script src='js/ricerca.js'></script>
 </head>
 <body class="home">
-	<?php include 'navbar.php' ?>
+    <?php include 'navbar.php';?>
     <p class="consegna_piccola box">Progetto creato da Michele Papucci e Sofia Zuffi per l'esame di Basi di dati
         dell'anno accademico 2019/2020.</p>
 </body>

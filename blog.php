@@ -64,7 +64,7 @@
 		echo "background-color: " . $blog["sfondo"] . "'";
 	}
 ?>>
-	<?php include 'navbar.php' ?>
+    <?php include 'navbar.php';?>
     <div class="contenitore">
         <div class="sinistra">
             <h1 class="titolo"><?php echo $blog["titolo_blog"]; ?></h1>
@@ -132,13 +132,13 @@
 				} catch(Exception $e) {
 					die($e->getMessage());
 				}
-
-				foreach($cat_blogs as $c) {
-					try {
-						if($c["id_blog"] != $_GET["blog"]) {
-							$c_post = getPostDiBlog($c["id_blog"]);
-							if(is_array($c_post) && count($c_post) > 0) {
-								echo("
+				if (count($cat_blogs) > 1) {
+                    foreach($cat_blogs as $c) {
+                        try {
+                            if($c["id_blog"] != $_GET["blog"]) {
+                                $c_post = getPostDiBlog($c["id_blog"]);
+                                if(is_array($c_post) && count($c_post) > 0) {
+                                    echo("
                                 <div class='contenitore_blog div_titoletto'>
                                     <a class='link titolo_altro_blog'>" . $c["titolo_blog"] . "</a>
                                     <div class='contenitore_post_altro_blog'>
@@ -147,12 +147,18 @@
                                     </div>
                                 </div>
                             ");
-							}
-						}
-					} catch(Exception $e) {
-						die($e->getMessage());
-					}
-				}
+                                }
+                            }
+                        } catch(Exception $e) {
+                            die($e->getMessage());
+                        }
+                    }
+                } else {
+				    echo '
+                            <div class = "div_titoletto">
+                                <p class = "titoletto">Non ci sono altri blog in Biologia.</p>
+                            </div>';
+                }
 			?>
         </div>
     </div>
