@@ -79,10 +79,10 @@
                 <div class = "contenitore_box">
                     <?php
                         if($propietario || $coautore) {
-                            echo '<input type = "button" id = "modifica_post" class = "bottone_modifiche" value = "Modifica post">';
+                            echo '<a href="creazione_post.php?id_post='. $_GET["id_post"] .'&edit=true&blog=' . $post["id_blog"] . '" id = "modifica_post" class = "bottone_modifiche link_standard">Modifica Post</a>';
                         }
                         if($propietario) {
-                            echo '<input type = "button" id = "cancella_post" class = "bottone_modifiche" value = "Cancella post">';
+                            echo '<a id = "cancella_post" class = "bottone_modifiche link_standard">Cancella Post</a>';
                         }
                     ?>
                 </div>
