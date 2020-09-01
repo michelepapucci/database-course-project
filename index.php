@@ -38,16 +38,18 @@
             (oppure
             potrai sceglierne una già esistente). <br/> Cosa aspetti, registrati e crea subito il tuo blog! </p>
         <div class="contenitore_box">
-            <div class="box_multipli">
-                <p class="consegna_piccola">Non ti sei ancora registrato?</p><br/>
-                <a class="consegna_media link" href="registrazione.php">Clicca qui!</a>
-            </div>
-            <div class="box_multipli">
-                <p class="consegna_piccola">Hai già un account?</p><br/>
-                <a class="consegna_media link" href="login.php">Accedi</a>
-            </div>
-			<?php
-				if($logged) {
+            <?php
+            if(!$logged) {
+                echo '
+                    <div class="box_multipli">
+                        <p class="consegna_piccola">Non ti sei ancora registrato?</p><br/>
+                        <a class="consegna_media link" href="registrazione.php">Clicca qui!</a>
+                    </div>
+                    <div class="box_multipli">
+                        <p class="consegna_piccola">Hai già un account?</p><br/>
+                        <a class="consegna_media link" href="login.php">Accedi</a>
+                    </div>';
+            } else if($logged) {
 					$ut_blogs = array();
 					try {
 						$ut_blogs = getBlogUtente($account->getId());
@@ -55,12 +57,12 @@
 						echo $e->getMessage();
 					}
 					?>
-                    <div class="box_multipli">
-                        <p class="consegna_piccola"> Gestisci i tuoi blog!</p>
+                    <div class="box_multipli singolo">
+                        <p class="consegna_media"> Gestisci i tuoi blog!</p>
                         <div class="contenitore_box">
 							<?php
 								if(count($ut_blogs) > 0) {
-									echo '<select class="selezione aliceblue" id="miei_blog" name="miei_blog">';
+									echo '<select class="selezione selezione_singola aliceblue" id="miei_blog" name="miei_blog">';
 									foreach($ut_blogs as $ut) {
 									    try {
 									        $b = getBlog($ut["id_blog"]);
@@ -70,12 +72,11 @@
 										echo '<option value = "blog.php?blog='. $ut["id_blog"] . '">' . $b["titolo_blog"] . '</option>';
 									}
 									echo '</select>';
-									echo '<input type="button" class="bottone_modifiche aliceblue" id = "gotoBlog" value="Visita">';
+									echo '<input type="button" class="bottone_modifiche bottone_singolo aliceblue" id = "gotoBlog" value="Visita">';
 								} else {
 									echo '<p class = "consegna_piccola">Non hai ancora un blog:</p><a class = "link consegna_media" href = "creazione_blog.php">Creane uno ora!</a>';
 								}
 							?>
-
                         </div>
                     </div>
 					<?php

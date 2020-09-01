@@ -516,6 +516,20 @@ p {
     margin: 2%
 }
 
+.singolo {
+    flex-grow: inherit;
+    width: 50%;
+    padding: 2%;
+}
+
+.selezione_singola {
+    padding: 0.5em;
+    margin-right: 1em;
+}
+
+.bottone_singolo {
+    padding: 0.5em;
+}
 .verticali {
     width: 90%;
 }
