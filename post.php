@@ -161,7 +161,7 @@
                         if($post["id_post"] != $l_post["id_post"]) {
                             echo("
                         <div class = 'post_recenti'>
-                            <a class = 'link' href = 'http://localhost/progettoBDD/post.php?id_post=" . $l_post["id_post"] . "'>" . $l_post["titolo_post"] . "</a>
+                            <a class = 'link consegna_piccola' href = 'http://localhost/progettoBDD/post.php?id_post=" . $l_post["id_post"] . "'>" . $l_post["titolo_post"] . "</a>
                             <p>" . substr($l_post["testo_post"], 0, 100) . "...</p>
                         </div>
                         ");
@@ -180,3 +180,6 @@
     </div>
 </body>
 </html>
+
+
+<!-- TODO: Reindirizzare l'utente alla pagina del blog una volta cancellato il post -->
