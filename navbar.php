@@ -20,6 +20,7 @@
                     if($logged) {
                         ?>
                         <a href="creazione_blog.php">Crea un Nuovo Blog</a>
+                        <a href="registrazione.php">Modifica Dati Utente</a>
                         <a href="logout.php">Logout</a>
                         <a id="del-utente">Elimina il tuo utente</a>
                 <?php
