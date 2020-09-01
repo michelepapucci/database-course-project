@@ -140,9 +140,9 @@
                                 if(is_array($c_post) && count($c_post) > 0) {
                                     echo("
                                 <div class='contenitore_blog div_titoletto'>
-                                    <a class='link titolo_altro_blog'>" . $c["titolo_blog"] . "</a>
+                                    <a class='link titolo_altro_blog' href = 'blog.php?blog=" . $c["id_blog"] . "'>" . $c["titolo_blog"] . "</a>
                                     <div class='contenitore_post_altro_blog'>
-                                        <a class='link titolo_post_altro_blog'>" . $c_post[0]["titolo_post"] . "</a>
+                                        <a class='link titolo_post_altro_blog' href = 'post.php?id_post=" . $c_post[0]["id_post"] . "'>" . $c_post[0]["titolo_post"] . "</a>
                                         <p>" . substr($c_post[0]["testo_post"], 0, 100) . "...</p>
                                     </div>
                                 </div>
