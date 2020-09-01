@@ -14,5 +14,4 @@
 		echo $e ->getMessage();
 	}
 
-	$pdo = null;
 

@@ -162,6 +162,3 @@ require 'account.php';
     </div>
 </body>
 </html>
-<?php
-	$pdo = null;
-?>

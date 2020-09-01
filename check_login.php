@@ -19,6 +19,3 @@
 	} else {
 		echo "Email o password errati";
 	}
-	$pdo = null;
-//todo: check chiusura pdo.
-//todo: togli accedi e registrati se sei loggato.
