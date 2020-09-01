@@ -174,12 +174,8 @@
                     </div>
 				    ';
                 }
-				$pdo = null;
 			?>
         </div>
     </div>
 </body>
 </html>
-
-
-<!-- TODO: Reindirizzare l'utente alla pagina del blog una volta cancellato il post -->

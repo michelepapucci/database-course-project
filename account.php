@@ -259,20 +259,6 @@
 			}
 		}
 
-		public function checkNomeOccupato(string $nome)
-		{
-			global $pdo;
-			try {
-				$stmt = $pdo->prepare('SELECT id_utente FROM utente_registrato WHERE nome_utente = :nome');
-				$stmt->bindParam(":nome", $nome);
-				$stmt->execute();
-				$res = $stmt->fetch();
-			} catch(PDOException $e) {
-				throw new Exception("Errore query Database");
-			}
-			return $res["id_utente"];
-		}
-
 		public function checkEmailOccupata(string $email)
 		{
 			global $pdo;
@@ -310,7 +296,3 @@
 		}
 
 	}
-
-	/*
-	 * TODO: Edit Account
-	 */
