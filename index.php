@@ -72,7 +72,7 @@
 									echo '</select>';
 									echo '<input type="button" class="bottone_modifiche aliceblue" id = "gotoBlog" value="Visita">';
 								} else {
-									echo 'Non hai ancora un blog!<a class = "link" href = "creazione_blog.php">Creane uno ora!</a>';
+									echo '<p class = "consegna_piccola">Non hai ancora un blog:</p><a class = "link consegna_media" href = "creazione_blog.php">Creane uno ora!</a>';
 								}
 							?>
 

@@ -119,7 +119,7 @@
                             <div>
                                 <p id = '" . $commento["id_comm"] ."' class = \"commento\">");
 							if($account->getId() == $commento["id_utente"]) {
-							    echo "<span class = 'link_standard' id = 'elimina_commento'>&#10005</span>";
+							    echo "<span class = 'link_standard crocetta' id = 'elimina_commento'>&#10005</span>";
                             }
                             echo("<span class = \"autore_commento\">" . $commento["nome_utente"] . ":</span><br/>"
 								. $commento["testo_comm"] . "<br/>
