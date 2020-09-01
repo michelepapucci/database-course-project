@@ -27,9 +27,10 @@
 		} catch(Exception $e) {
 			die($e->getMessage());
 		}
-	} else {
-		die("Impossibile modificare utente!");
 	}
+	if($edit && !$logged) {
+	    die("Impossibile modificare utente se non si è loggati!");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="it">
