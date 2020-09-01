@@ -28,7 +28,7 @@
 		}
 		try {
 			 $id = inserisciPost($_POST["titolo_post"], $_POST["testo_post"], $_SESSION["blog_attivo"], $account->getId());
-			if($id != false && count($immagini) != 0){
+			if($id && count($immagini) != 0){
 				inserisciImmaginiPost($id, $immagini);
 			}
 
