@@ -10,7 +10,7 @@
 		$account = new Account();
 		$id = $account -> nuovoAccount($_POST["nome_utente"], $_POST["password"], $_POST["email"], $_POST["documento"], $_POST["cellulare"]);
 		$account -> login($_POST["email"], $_POST["password"]);
-		header("Location: " . $_SESSION["last_page"]);
+		header("Location: index.php");
 	} catch (Exception $e) {
 		echo $e ->getMessage();
 	}
