@@ -4,11 +4,6 @@
 	require 'db_handler.php';
 
 	$logged = false;
-	if(isset($_SERVER['HTTP_REFERER'])){
-		$_SESSION["last_page"] = $_SERVER['HTTP_REFERER'];
-	} else {
-		$_SESSION["last_page"] = "index.php";
-	}
 
 	$account = new Account();
 	try {
