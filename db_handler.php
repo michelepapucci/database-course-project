@@ -164,7 +164,7 @@
 		global $pdo;
 		if($pdo != false) {
 			$stmt = $pdo->prepare("
-									SELECT data_ora_comm, testo_comm, nome_utente
+									SELECT data_ora_comm, testo_comm, nome_utente, commento.id_utente, id_comm
 									FROM commento, utente_registrato AS a
 									WHERE id_post = :id
 									AND commento.id_utente = a.id_utente

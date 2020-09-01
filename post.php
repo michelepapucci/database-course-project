@@ -50,6 +50,7 @@
 	<?php
 		if($logged) {
 			echo '<script src="js/inserisci-commento.js"></script>';
+			echo '<script src="js/del_commento.js"></script>';
 		}
 		if($propietario) {
 		    echo '<script src="js/del_post.js"></script>';
@@ -116,8 +117,11 @@
 						foreach($commenti as $commento) {
 							echo("
                             <div>
-                                <p class = \"commento\">
-                                    <span class = \"autore_commento\">" . $commento["nome_utente"] . ":</span><br/>"
+                                <p id = '" . $commento["id_comm"] ."' class = \"commento\">");
+							if($account->getId() == $commento["id_utente"]) {
+							    echo "<span class = 'link_standard' id = 'elimina_commento'>&#10005</span>";
+                            }
+                            echo("<span class = \"autore_commento\">" . $commento["nome_utente"] . ":</span><br/>"
 								. $commento["testo_comm"] . "<br/>
                                     <span class = \"data_commento\">(" . $commento["data_ora_comm"] . ")</span>
                                 </p>
