@@ -37,7 +37,7 @@
     <form class = "navbar_form" action = "ricerca.php" method = "get">
         <label class = "inline" for="ricerca">Cerca un blog per
             <select class = "aliceblue" name="opzioni" id="opzioni">
-                <option value="nome">nome</option>
+                <option value="nome">titolo</option>
                 <option value="categoria">categoria</option>
                 <option value="tema">tema</option>
             </select> : </label>
