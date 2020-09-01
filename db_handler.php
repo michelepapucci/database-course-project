@@ -428,40 +428,35 @@
 	function checkPresenzaTema($tema, $id_cat)
 	{
 		global $pdo;
-		if($pdo != false) {
-			try {
-				$stmt = $pdo->prepare("
+		try {
+			$stmt = $pdo->prepare("
 												SELECT *
 												FROM tema
 												WHERE nome_tema = :nome
 												AND id_cat = :cat");
-				$stmt->execute(array(':nome' => $tema, ':cat' => $id_cat));
-				if($id = $stmt->fetch()) {
-					return $id["id_tema"];
-				} else {
-					return false;
-				}
-			} catch(PDOException $e) {
-				throw new Exception("Errore query tema");
+			$stmt->execute(array(':nome' => $tema, ':cat' => $id_cat));
+			if($id = $stmt->fetch()) {
+				return $id["id_tema"];
+			} else {
+				return false;
 			}
+		} catch(PDOException $e) {
+			throw new Exception("Errore query tema");
 		}
 	}
 
 	function inserisciNuovoTema($tema, $id_cat)
 	{
 		global $pdo;
-		if($pdo != false) {
-			try {
-				$stmt = $pdo->prepare("
+		try {
+			$stmt = $pdo->prepare("
 												INSERT INTO tema(nome_tema, id_cat)
 												VALUES (:nome, :cat)");
-				$stmt->execute(array(':nome' => $tema, ':cat' => $id_cat));
-				return $pdo->lastInsertId();
-			} catch(PDOException $e) {
-				throw new Exception("Errore query tema");
-			}
+			$stmt->execute(array(':nome' => $tema, ':cat' => $id_cat));
+			return $pdo->lastInsertId();
+		} catch(PDOException $e) {
+			throw new Exception("Errore query tema");
 		}
-		return false;
 	}
 
-	 /* TODO: Rimuovere check pdo == false*/
+	/* TODO: Rimuovere check pdo == false*/
