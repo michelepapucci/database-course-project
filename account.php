@@ -26,16 +26,16 @@
 				throw new Exception("Nome utente non valido");
 			}
 			if(!$this->checkPsw($password)) {
-				throw new Exception("Password non valida");
+				throw new Exception("Password non valida! Seguire il formato richiesto!");
 			}
 			if(!$this->checkEmail($email)) {
-				throw new Exception("Email non valida");
+				throw new Exception("Email non valida! Controlla di aver inserito correttamente il dominio dopo la @!");
 			}
 			if(!$this->checkDocumento($documento)) {
-				throw new Exception("Documento non valido");
+				throw new Exception("Documento non valido! Un documento è una stringa di 9 cifre!");
 			}
 			if(!$this->checkCellulare($cellulare)) {
-				throw new Exception("Cellulare non valido");
+				throw new Exception("Cellulare non valido! Inserisci soltanto il numero senza il prefisso +39. I numeri italiani sono composti da 10 cifre!");
 			}
 			if(!is_null($this->checkEmailOccupata($email))) {
 				throw new Exception("Email già in uso");
@@ -152,10 +152,55 @@
 			}
 		}
 
-		public function modificaAccount(int $id, string $nome, string $password)
+		public function modificaAccount(string $nome, string $password, string $email, string $documento, string $cellulare)
 		{
 			global $pdo;
 
+			$nome = trim($nome);
+			$email = trim($email);
+			$documento = trim($documento);
+			$cellulare = trim($cellulare);
+
+			if(!$this->checkNome($nome)) {
+				throw new Exception("Nome utente non valido");
+			}
+			if(!$this->checkPsw($password)) {
+				throw new Exception("Password non valida! Seguire il formato richiesto!");
+			}
+			if(!$this->checkEmail($email)) {
+				throw new Exception("Email non valida! Controlla di aver inserito correttamente il dominio dopo la @!");
+			}
+			if(!$this->checkDocumento($documento)) {
+				throw new Exception("Documento non valido! Un documento è una stringa di 9 cifre!");
+			}
+			if(!$this->checkCellulare($cellulare)) {
+				throw new Exception("Cellulare non valido! Inserisci soltanto il numero senza il prefisso +39. I numeri italiani sono composti da 10 cifre!");
+			}
+			if($this->id != $this->checkEmailOccupata($email)) {
+				throw new Exception("Email già in uso");
+			}
+
+			try {
+				$stmt = $pdo->prepare("
+												UPDATE utente_registrato
+												SET nome_utente = :nome,
+												password = :psw,
+												email = :email,
+												documento = :documento,
+												cellulare = :cellulare
+												WHERE id_utente = :id");
+				$stmt->execute(array(
+					':nome' => $nome,
+					':psw' => password_hash($password, PASSWORD_DEFAULT),
+					':email' => $email,
+					':documento' => $documento,
+					':cellulare' => $cellulare,
+					':id' => $this->id
+				));
+				return true;
+			} catch(PDOException $e) {
+				throw new Exception("Impossibile aggiornare i dati utente" . $e->getMessage());
+			}
 		}
 
 		public function cancellaAccount()
@@ -251,6 +296,19 @@
 		{
 			return $this->nome;
 		}
+
+		public function getDatiUtente()
+		{
+			global $pdo;
+			try {
+				$stmt = $pdo->prepare("SELECT email, documento, cellulare FROM utente_registrato WHERE id_utente = :id");
+				$stmt->execute(array(':id' => $this->id));
+				return $stmt->fetch();
+			} catch(PDOException $e) {
+				throw new Exception("impossibile recuperare i dati utente");
+			}
+		}
+
 	}
 
 	/*
