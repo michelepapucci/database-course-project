@@ -458,5 +458,3 @@
 			throw new Exception("Errore query tema");
 		}
 	}
-
-	/* TODO: Rimuovere check pdo == false*/
