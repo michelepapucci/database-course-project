@@ -75,7 +75,7 @@
             <div>
                 <span class="autore_post"><?php echo $post["nome_utente"] ?> -</span>
                 <span class="data_post"><?php echo $post["data_ora_post"] ?> -</span>
-                <a class = "link"<?php echo "href= 'blog.php?blog=" . $post["id_blog"] . "'>" . $blog["titolo_blog"]?> -</a>
+                <a class = "link"<?php echo "href= 'blog.php?blog=" . $post["id_blog"] . "'>" . $blog["titolo_blog"]?></a><span> -</span>
                 <a class="link" href="#commenti">Commenti (<?php echo(getNumeroCommenti($post["id_post"])); ?>)</a>
                 <br/>
                 <div class = "contenitore_box">
